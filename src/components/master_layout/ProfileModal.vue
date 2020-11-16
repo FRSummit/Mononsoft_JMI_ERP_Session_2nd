@@ -25,10 +25,18 @@
       </div>
       <div class="profile-my-profile">
         <p class="profile-my-profile-text">My Profile</p>
-        <div><a class="profile-view" href="https://www.google.com">View Profile</a></div>
-        <div><a class="profile-pass-change" href="https://www.google.com">Change Password</a></div>
+        <div>
+          <a class="profile-view" href="https://www.google.com">View Profile</a>
+        </div>
+        <div>
+          <a class="profile-pass-change" href="https://www.google.com"
+            >Change Password</a
+          >
+        </div>
       </div>
-      <p class="profile_logout">Logout</p>
+      <p class="profile_logout">
+        <router-link to="/login">Logout</router-link>
+      </p>
     </div>
   </div>
 </template>
@@ -36,6 +44,7 @@
 <script>
 import ERPSidebarService from "../../service/ERPSidebarService";
 const service = new ERPSidebarService();
+import { mapState } from "vuex";
 
 export default {
   data() {
@@ -58,11 +67,22 @@ export default {
       progress: true,
     };
   },
+  computed: {
+    ...mapState({
+      account: (state) => state.account,
+      users: (state) => state.users.all,
+    }),
+  },
   created() {
     service.getAllUser().then((res) => {
       this.user = res.data[0];
       this.progress = false;
     });
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
   },
 };
 </script>
@@ -153,5 +173,9 @@ export default {
   margin-bottom: 6px;
   cursor: pointer;
   text-align: center;
+}
+.profile_logout a {
+  text-decoration: none;
+  color: #222222;
 }
 </style>

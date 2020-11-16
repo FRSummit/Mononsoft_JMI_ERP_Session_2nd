@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 // import { accountModule } from './account_module'
 import { account } from './account.module'
+import { alert } from './alert.module'
 
 Vue.use(Vuex);
 
@@ -10,15 +11,18 @@ export const store = new Vuex.Store({
     userIsAuthorized: false,
   },
   actions: {
-      // loginChecker({ commit }, loginData) {
-      //   commit('loginRequest');
-      //   console.log('data')
-      //   console.log(loginData)
-      //   accountModule.loginChecker();
-      // }
+    // loginChecker({ commit }, loginData) {
+    //   commit('loginRequest');
+    //   console.log('data')
+    //   console.log(loginData)
+    //   accountModule.loginChecker();
+    // }
+    // logout() {
+    //   console.log('loging out ...')
+    // },
   },
   mutations: {
-    setUserIsAuthenticated(state, replacement){
+    setUserIsAuthenticated(state, replacement) {
       // console.log('method: setUserIsAuthenticated()');
       state.userIsAuthorized = replacement;
     },
@@ -36,6 +40,7 @@ export const store = new Vuex.Store({
     // },
   },
   modules: {
-    account
+    account,
+    alert
   }
 });

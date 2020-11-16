@@ -5,6 +5,8 @@ import { store } from './store'
 import vuetify from './plugins/vuetify';
 import './custom.js'
 import './assets/roboto-font.css'
+import { configureFakeBackend } from './router';
+configureFakeBackend();
 
 Vue.config.productionTip = false
 

@@ -1,1 +1,1 @@
-console.log('working')
+console.log('this is custom.js')

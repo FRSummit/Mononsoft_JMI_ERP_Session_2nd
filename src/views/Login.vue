@@ -103,12 +103,12 @@ export default {
     ...mapState("account", ["status"]),
   },
   created() {
-    console.log(this.$store.state.userIsAuthorized);
+    // console.log(this.$store.state.userIsAuthorized);
     // reset login status
-    // this.logout();
+    this.logout();
   },
   methods: {
-    ...mapActions("account", ["login"]),
+    ...mapActions('account', ['login', 'logout']),
     handleSubmit() {
       let loginUser = {
         username: this.username,

@@ -1,18 +1,19 @@
-import env from '../environment'
+// import env from '../environment'
 import { userService } from '../service/user.service'
 import { router } from '../router'
 
 
 const user = JSON.parse(localStorage.getItem('user'));
-console.log('User >>> ' + user)
+console.log('account.modulle => local storage user :  ' + user)
 const state = user ? { status: { loggedIn: true }, user } : { status: {}, user: null };
+console.log('account.module => state : ' + state + '    loggingIn: ' + state.loggingIn + '    user : ' + state.user)
 
 const actions = {
     login({ dispatch, commit }, loginData) {
         commit('loginRequest');
-        console.log('I am here : ' + loginData.username + '    ' + loginData.password)
+        console.log('I am here in account.modulle : ' + loginData.username + '    ' + loginData.password)
         // console.log(loginData)
-        console.log(env)
+        // console.log(env)
         userService.login(loginData.username, loginData.password)
             .then(
                 user => {
@@ -24,7 +25,11 @@ const actions = {
                     dispatch('alert/error', error, { root: true });
                 }
             );
-    }
+    },
+    logout({ commit }) {
+        userService.logout();
+        commit('logout');
+    },
 };
 
 const mutations = {
@@ -40,6 +45,10 @@ const mutations = {
     },
     loginFailure(state) {
         console.log('login failure')
+        state.status = {};
+        state.user = null;
+    },
+    logout(state) {
         state.status = {};
         state.user = null;
     },
