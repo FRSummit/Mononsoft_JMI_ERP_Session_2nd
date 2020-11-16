@@ -341,7 +341,7 @@ export default {
 }
 #main-section {
   transition: margin-left 0.5s;
-  /* padding: 16px; */
+  padding: 10px;
   margin-left: 60px;
 }
 

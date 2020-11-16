@@ -9,27 +9,27 @@ export const router = new VueRouter({
     {
       path: '/',
       name: 'Home',
-      component: () => import('../views/Home.vue')
+      component: () => import('../views/public_views/Home.vue')
     },
     {
       path: '/about',
       name: 'About',
-      component: () => import('../views/About.vue')
+      component: () => import('../views/public_views/About.vue')
     },
     {
       path: '/login',
       name: 'Login',
-      component: () => import('../views/Login.vue')
+      component: () => import('../views/private_views/Login.vue')
     },
     {
       path: '/signup',
       name: 'Signup',
-      component: () => import('../views/Signup.vue')
+      component: () => import('../views/private_views/Signup.vue')
     },
     {
       path: '/landing-page',
       name: 'Landing page',
-      component: () => import('../views/LandingPage.vue')
+      component: () => import('../views/private_views/LandingPage.vue')
     },
 
     // otherwise redirect to home
@@ -49,7 +49,10 @@ router.beforeEach((to, from, next) => {
 
   if (authRequired && !loggedIn) {
     return next('/login');
+  } else if (authRequired && loggedIn) {
+    if(new Date().getTime() > JSON.parse(localStorage.getItem('user')).expiresAt) {
+      return next('/login');
+    }
   }
-
   next();
 })

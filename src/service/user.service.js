@@ -22,10 +22,13 @@ function login(username, password) {
             console.log('user : ' + JSON.stringify(user))
             console.log(user.length)
             // login successful if there's a jwt token in the response
-            if (user.token) {
+            if (user.accessToken) {
                 console.log('inside token')
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
+                // localStorage.setItem('access_token', user.accessToken);
+                // localStorage.setItem('id_token', user.idToken);
+                console.log(new Date().getTime())
             }
             console.log('done user service')
 
@@ -36,6 +39,8 @@ function login(username, password) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
+    // localStorage.removeItem('access_token');
+    // localStorage.removeItem('id_token');
     console.log('logged out')
 }
 
