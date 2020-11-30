@@ -71,7 +71,7 @@
     </div>
 
     <!-- sidebar section -->
-    <div id="sidenav" class="sidenav">
+    <div id="sidenavbar" class="sidenavbar">
       <SidenavMenu :sidenav="sidenav" />
     </div>
     <div id="main-section">
@@ -120,12 +120,12 @@ export default {
     toggleNav() {
       if (this.sidenav) {
         this.sidenav = false;
-        document.getElementById("sidenav").style.width = "60px";
+        document.getElementById("sidenavbar").style.width = "60px";
         document.getElementById("main-section").style.marginLeft = "60px";
         document.getElementById("footer").style.left = "60px";
       } else {
         this.sidenav = true;
-        document.getElementById("sidenav").style.width = "220px";
+        document.getElementById("sidenavbar").style.width = "220px";
         document.getElementById("main-section").style.marginLeft = "220px";
         document.getElementById("footer").style.left = "220px";
       }
@@ -308,7 +308,7 @@ export default {
 }
 
 /* Sidebar */
-.sidenav {
+.sidenavbar {
   height: 100%;
   width: 60px;
   position: fixed;
@@ -321,7 +321,7 @@ export default {
   /* padding-top: 60px; */
   border-right: 2px solid #fff4da;
 }
-.sidenav a {
+.sidenavbar a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -329,10 +329,10 @@ export default {
   display: block;
   transition: 0.3s;
 }
-.sidenav a:hover {
+.sidenavbar a:hover {
   color: #f1f1f1;
 }
-.sidenav .closebtn {
+.sidenavbar .closebtn {
   position: absolute;
   top: 0;
   right: 25px;

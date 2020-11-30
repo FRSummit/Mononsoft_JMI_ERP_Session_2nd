@@ -19,7 +19,7 @@ export const router = new VueRouter({
     {
       path: '/login',
       name: 'Login',
-      component: () => import('../views/private_views/Login.vue')
+      component: () => import('../views/public_views/Login.vue')
     },
     {
       path: '/signup',
@@ -30,6 +30,11 @@ export const router = new VueRouter({
       path: '/landing-page',
       name: 'Landing page',
       component: () => import('../views/private_views/LandingPage.vue')
+    },
+    {
+      path: '/competitors-data-mgt',
+      name: 'Competitor Data Management',
+      component: () => import('../views/private_views/CompetitorsDataMgt.vue')
     },
 
     // otherwise redirect to home

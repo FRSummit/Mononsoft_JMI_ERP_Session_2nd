@@ -9,26 +9,28 @@ export const userService = {
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
     };
 
     console.log('I am here in user.service : ' + username + '    ' + password)
 
-    return fetch(`${env.apiBaseUrl}/users`, requestOptions)
+    // return fetch(`${env.apiBaseUrl}/users`, requestOptions)
+    return fetch(`${env.apiBaseUrl}/api/auth/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
             console.log('user.service => login()')
             console.log('user : ' + JSON.stringify(user))
-            console.log(user.length)
+            console.log(user)
             // login successful if there's a jwt token in the response
-            if (user.accessToken) {
+            if (user.data.access_token) {
                 console.log('inside token')
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 // localStorage.setItem('access_token', user.accessToken);
                 // localStorage.setItem('id_token', user.idToken);
+                console.log(new Date())
                 console.log(new Date().getTime())
+                console.log(user)
             }
             console.log('done user service')
 
@@ -38,9 +40,12 @@ function login(username, password) {
 
 function logout() {
     // remove user from local storage to log user out
+    const requestOptions = {
+        method: 'GET',
+        body: null
+    };
+    fetch(`${env.apiBaseUrl}/api/logout`, requestOptions);
     localStorage.removeItem('user');
-    // localStorage.removeItem('access_token');
-    // localStorage.removeItem('id_token');
     console.log('logged out')
 }
 
