@@ -8,6 +8,5 @@ export default {
       audience: "http://35.201.0.39/",
       returnTo: 'http://localhost:8080'
     },
-    apiBaseUrl: "http://203.188.246.138:8885"
-    // apiBaseUrl: "http://192.168.10.34:3001"
+    apiBaseUrl: "http://192.168.10.34:3001"
   };

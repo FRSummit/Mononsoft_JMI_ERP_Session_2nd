@@ -1,24 +1,17 @@
 import ERPMasterLayoutData from '../service/ERPSidebarService';
 const erpService = new ERPMasterLayoutData();
 
-// array in local storage for registered users
-// let users = JSON.parse(localStorage.getItem('users')) || [];
 let users = [];
 
 export function configureFakeBackend() {
     let realFetch = window.fetch;
     window.fetch = async function (url, opts) {
-        // console.log("configureFakeBackend : " + url + '    ' + JSON.parse(opts.body).username + '    ' + JSON.parse(opts.body).password)
+        console.log("configureFakeBackend : " + url + '    ' + JSON.parse(opts.body).username + '    ' + JSON.parse(opts.body).password)
 
-        if (opts.body) {
-            await erpService.getLoginRequestUserData(JSON.parse(opts.body).username, JSON.parse(opts.body).password)
-                .then(res => {
-                    users = res.data;
-                    console.log('the data')
-                    console.log(res.data)
-                });
-        }
-
+        await erpService.getLoginRequestUserData(JSON.parse(opts.body).username, JSON.parse(opts.body).password)
+            .then(res => {
+                users = res.data;
+            });
         return new Promise((resolve, reject) => {
             console.log('resolve or reject')
             // wrap in timeout to simulate server api call
@@ -26,25 +19,21 @@ export function configureFakeBackend() {
                 console.log('set timeout')
 
                 // authenticate
-                // if (url.endsWith('/users') && opts.method === 'POST') {
-                if (url.endsWith('/api/auth/login') && opts.method === 'POST') {
+                if (url.endsWith('/users') && opts.method === 'POST') {
                     console.log('i am inside authenticate')
                     // get parameters from post request
-                    // let params = JSON.parse(opts.body);
-                    console.log(users)
+                    let params = JSON.parse(opts.body);
 
                     // find if any user matches login credentials
-                    // let filteredUsers = users.filter(user => {
-                    //     console.log('filtered user')
-                    //     // return user.username === params.username && user.password === params.password;
-                    //     return user.username === params.username && user.password === params.password;
-                    // });
+                    let filteredUsers = users.filter(user => {
+                        console.log('filtered user')
+                        return user.username === params.username && user.password === params.password;
+                    });
 
-                    // if (filteredUsers.length) {
-                    if (users) {
+                    if (filteredUsers.length) {
                         console.log('resolving')
                         // if login details are valid return user details and fake jwt token
-                        /*let user = filteredUsers[0];
+                        let user = filteredUsers[0];
                         let responseJson = {
                             id: user.id,
                             username: user.username,
@@ -52,14 +41,8 @@ export function configureFakeBackend() {
                             lastName: user.lastName,
                             accessToken: 'fake-jwt-token',
                             idToken: user.id + '_' + user.username,
-                            expiresAt: new Date().getTime() + 20000
-                        };*/
-                        let responseJson = {
-                            status: users.status,
-                            message: users.message,
-                            data: users.data
+                            expiresAt: new Date().getTime() + (60 * 60 * 1000)
                         };
-                        console.log(responseJson)
                         resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(responseJson)) });
                     } else {
                         // else return error
@@ -158,12 +141,6 @@ export function configureFakeBackend() {
                         reject('Unauthorised');
                     }
 
-                    return;
-                }
-
-                // logout users
-                if (url.endsWith('/api/logout') && opts.method === 'GET') {
-                    console.log('I am going to logout')
                     return;
                 }
 

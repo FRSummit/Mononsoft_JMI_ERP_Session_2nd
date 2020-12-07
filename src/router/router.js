@@ -24,7 +24,7 @@ export const router = new VueRouter({
     {
       path: '/signup',
       name: 'Signup',
-      component: () => import('../views/private_views/Signup.vue')
+      component: () => import('../views/public_views/Signup.vue')
     },
     {
       path: '/landing-page',
@@ -34,7 +34,22 @@ export const router = new VueRouter({
     {
       path: '/competitors-data-mgt',
       name: 'Competitor Data Management',
-      component: () => import('../views/private_views/CompetitorsDataMgt.vue')
+      component: () => import('../views/private_views/unknown/CompetitorsDataMgt.vue')
+    },
+    {
+      path: '/adm/settings&management/sbu',
+      name: 'SBU',
+      component: () => import('../views/private_views/ADM/SBU.vue')
+    },
+    {
+      path: '/adm/settings&management/sbu-sister-concern:id',
+      name: 'Sister Concern',
+      component: () => import('../views/private_views/ADM/SBU-SisterConcern.vue')
+    },
+    {
+      path: '/adm/settings&management/create-new-sbu',
+      name: 'Create New Strategic Business Unit (SBU)',
+      component: () => import('../views/private_views/ADM/CreateNewSBU.vue')
     },
 
     // otherwise redirect to home
@@ -48,7 +63,7 @@ export const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   console.log('before each')
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/login', '/'];
+  const publicPages = ['/', '/login', '/signup'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 

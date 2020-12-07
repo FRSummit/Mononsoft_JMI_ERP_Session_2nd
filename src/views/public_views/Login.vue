@@ -97,7 +97,7 @@ export default {
       submitted: false,
       authenticated: this.$store.state.userIsAuthorized,
       remember: false,
-      date: null
+      date: null,
     };
   },
   computed: {
@@ -109,7 +109,7 @@ export default {
     this.logout();
   },
   methods: {
-    ...mapActions('account', ['login', 'logout']),
+    ...mapActions("account", ["login", "logout"]),
     handleSubmit() {
       let loginUser = {
         username: this.username,
@@ -168,7 +168,7 @@ export default {
   padding: 16px 50px 36px;
   /* width: 70%; */
   width: 100%;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0 13px 32px -12px #ece7e7;
 }
 .login-section .welcome-section .welcome-inner {
@@ -181,7 +181,7 @@ export default {
   color: var(--unnamed-color-026cd1);
   text-align: left;
   letter-spacing: 0px;
-  color: #026CD1;
+  color: #026cd1;
 }
 .login-section .welcome-section .welcome-inner p img {
   width: 60px;
@@ -215,7 +215,7 @@ export default {
   label {
   display: inline-block;
   font-size: 18px;
-  color: #026CD1;
+  color: #026cd1;
   margin-bottom: 10px;
 }
 .login-section
@@ -228,7 +228,7 @@ export default {
   display: inline-block;
   margin: 0;
   font-size: 12px;
-  color: #FF4040;
+  color: #ff4040;
   position: absolute;
   right: 2px;
   bottom: 4px;
@@ -247,16 +247,18 @@ export default {
   .input-section
   .input-sec
   input {
-  width: -webkit-fill-available;
-  font-size: 14px;
+  display: block;
+  height: auto;
+  /* width: -webkit-fill-available; */
+  font-size: 18px;
   padding: 10px 12px;
-  border: 1px solid #026CD1;
+  border: 1px solid #026cd1;
   border-radius: 2px;
-  color: #026CD1;
+  color: #026cd1;
   outline: none;
 }
 .error-border {
-  border: 1px solid #FF4C4C;
+  border: 1px solid #ff4c4c;
 }
 .login-section .welcome-section .welcome-inner .input-form .submission-section {
   margin-top: 50px;
@@ -268,7 +270,7 @@ export default {
   .submission-section
   .signup-section {
   display: inline-block;
-  border: 1px solid #026CD1;
+  border: 1px solid #026cd1;
   border-radius: 2px;
   width: 140px;
   padding: 8px;
@@ -285,7 +287,7 @@ export default {
   font-size: 16px;
   /* border: 1px solid #026CD1;
   border-radius: 2px; */
-  color: #026CD1;
+  color: #026cd1;
   /* padding: 8px 20px; */
   outline: none;
 }
@@ -306,11 +308,11 @@ export default {
   .login-btn-section
   .login-btn {
   font-size: 16px;
-  background: #026CD1;
-  border: 1px solid #026CD1;
+  background: #026cd1;
+  border: 1px solid #026cd1;
   border-radius: 2px;
-  color: #FFFFFF;
-  padding: 8px 20px;
+  color: #ffffff;
+  padding: 11px 20px 11px;
   width: 140px;
   outline: none;
 }
@@ -368,7 +370,7 @@ export default {
   .forget-section
   .forget-password {
   font-size: 15px;
-  color: #026CD1;
+  color: #026cd1;
 }
 .login-section
   .welcome-section
@@ -379,7 +381,7 @@ export default {
   .forget-password
   a {
   font-size: 15px;
-  color: #026CD1;
+  color: #026cd1;
   text-decoration: none;
 }
 .login-section .welcome-section .welcome-inner .term-help-section {
@@ -407,7 +409,7 @@ export default {
   .term-section
   .term-text
   .term-policy-url {
-  color: #026CD1;
+  color: #026cd1;
   text-decoration: none;
   cursor: pointer;
 }
@@ -433,7 +435,7 @@ export default {
   .help-section
   .help-text
   .help-url {
-  color: #026CD1;
+  color: #026cd1;
   text-decoration: none;
   cursor: pointer;
 }
