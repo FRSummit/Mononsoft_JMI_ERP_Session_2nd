@@ -3,6 +3,7 @@ import App from './App.vue'
 import { router } from './router'
 import { store } from './store'
 import vuetify from './plugins/vuetify';
+import './custom.css'
 import './custom.js'
 import './assets/roboto-font.css'
 import '../node_modules/materialize-css/dist/css/materialize.min.css'

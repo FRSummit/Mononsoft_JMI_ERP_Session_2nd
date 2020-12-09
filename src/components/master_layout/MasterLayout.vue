@@ -183,7 +183,7 @@ export default {
 .header {
   background: #026cd1;
   color: #fff;
-  padding: 8px 0;
+  padding: 7px 0;
   width: 100%;
   overflow: hidden;
 }

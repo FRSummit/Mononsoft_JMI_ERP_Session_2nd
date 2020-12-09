@@ -68,6 +68,8 @@ export default {
   overflow: auto;
   margin-top: 16px;
   margin-left: -94px;
+  z-index: 5;
+  position: absolute;
 }
 .group-list-section .comapny-sec {
   padding: 0 10px;
@@ -96,5 +98,12 @@ export default {
 }
 .group-list-sec::-webkit-scrollbar-thumb:hover {
   background: #004e98;
+}
+@-moz-document url-prefix() {
+  .group-list-sec {
+    overflow-y: scroll;
+    scrollbar-color: #168fff #c9c9c9;
+    scrollbar-width: thin;
+  }
 }
 </style>

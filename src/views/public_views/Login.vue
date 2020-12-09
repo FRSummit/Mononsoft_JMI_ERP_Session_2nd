@@ -256,6 +256,7 @@ export default {
   border-radius: 2px;
   color: #026cd1;
   outline: none;
+  box-sizing: border-box;
 }
 .error-border {
   border: 1px solid #ff4c4c;

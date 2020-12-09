@@ -103,9 +103,9 @@ export default {
   padding: 4px 40px;
 }
 .chat-progressbar {
-    text-align: center;
-    margin: 20px 0;
-    color: #026cd1;
+  text-align: center;
+  margin: 20px 0;
+  color: #026cd1;
 }
 .chat {
   padding: 6px 30px;
@@ -139,5 +139,12 @@ export default {
   white-space: nowrap;
   overflow: hidden !important;
   text-overflow: ellipsis;
+}
+@-moz-document url-prefix() {
+  .chat-inner-sec {
+    overflow-y: scroll;
+    scrollbar-color: #45a5ff #c9c9c9;
+    scrollbar-width: thin;
+  }
 }
 </style>

@@ -114,7 +114,7 @@ export default {
   },
   methods: {
     addnewClick() {
-      this.$router.replace("/adm/settings&management/create-new-sbu");
+      this.$router.replace("/adm/settings&management/sbu/create-new-sbu");
     },
   },
 };

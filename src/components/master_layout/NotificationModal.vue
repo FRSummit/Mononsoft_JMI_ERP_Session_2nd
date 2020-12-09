@@ -138,4 +138,11 @@ export default {
   overflow: hidden !important;
   text-overflow: ellipsis;
 }
+@-moz-document url-prefix() {
+  .notification-inner-sec {
+    overflow-y: scroll;
+    scrollbar-color: #45a5ff #c9c9c9;
+    scrollbar-width: thin;
+  }
+}
 </style>

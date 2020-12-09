@@ -39,17 +39,17 @@ export const router = new VueRouter({
     {
       path: '/adm/settings&management/sbu',
       name: 'SBU',
-      component: () => import('../views/private_views/ADM/SBU.vue')
+      component: () => import('../views/private_views/ADM/SBU/SBU.vue')
     },
     {
-      path: '/adm/settings&management/sbu-sister-concern:id',
+      path: '/adm/settings&management/sbu/sbu-sister-concern:id',
       name: 'Sister Concern',
-      component: () => import('../views/private_views/ADM/SBU-SisterConcern.vue')
+      component: () => import('../views/private_views/ADM/SBU/SBU-SisterConcern.vue')
     },
     {
-      path: '/adm/settings&management/create-new-sbu',
+      path: '/adm/settings&management/sbu/create-new-sbu',
       name: 'Create New Strategic Business Unit (SBU)',
-      component: () => import('../views/private_views/ADM/CreateNewSBU.vue')
+      component: () => import('../views/private_views/ADM/SBU/CreateNewSBU.vue')
     },
 
     // otherwise redirect to home

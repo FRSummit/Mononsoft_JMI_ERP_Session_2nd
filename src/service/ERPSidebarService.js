@@ -1,4 +1,5 @@
 import axios from 'axios';
+import env from '../environment'
 
 // axios.defaults.baseURL = 'http://localhost:3000';
 // axios.defaults.baseURL = 'http://192.168.10.74:3000';
@@ -6,7 +7,8 @@ import axios from 'axios';
 // axios.defaults.baseURL = 'http://203.188.246.138:8885/input.json';
 // axios.defaults.baseURL = 'http://203.188.246.138:8885/jerp_vuejs_sidebar.php';
 // axios.defaults.baseURL = 'http://192.168.10.34:8080/MS/api';
-axios.defaults.baseURL = 'http://192.168.10.34:3001';
+// axios.defaults.baseURL = 'http://192.168.10.34:3001';
+axios.defaults.baseURL = env.apiBaseUrl;
 // axios.defaults.baseURL = 'http://192.168.10.34:8080/PhpApi/api/category/read.php';
 // axios.defaults.baseURL = 'http://203.188.246.138:8885/jerp/public/demodata';
 

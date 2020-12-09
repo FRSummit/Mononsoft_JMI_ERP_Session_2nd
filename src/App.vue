@@ -5,19 +5,15 @@
 </template>
 
 <script>
-import MasterLayout from './components/master_layout/MasterLayout'
+import MasterLayout from "./components/master_layout/MasterLayout";
 
 export default {
   components: {
     MasterLayout,
   },
-  methods: {
-  }
-}
+  methods: {},
+};
 </script>
 
 <style>
-#app {
-    font-family: 'Roboto';
-}
 </style>

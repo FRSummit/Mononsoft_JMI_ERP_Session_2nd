@@ -1,0 +1,89 @@
+/* App */
+
+#app {
+    font-family: "Roboto";
+}
+
+/* views > private_views > ADM > Create New Sbu */
+
+/* .active {
+    border-bottom: 2px solid #026cd1;
+} */
+
+#create-new-sbu .v-card {
+    margin-top: 20px;
+    margin-right: 16px;
+    box-shadow: none;
+}
+
+#create-new-sbu .theme--light.v-tabs>.v-tabs-bar {
+    background: #FFFFFF !important;
+}
+
+#create-new-sbu .new-sbu-tab.v-tab {
+    border-bottom: 2px solid #026cd1;
+    text-transform: none;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: normal;
+    padding: 10px 16px;
+    color: #000000;
+}
+
+#create-new-sbu .v-tabs-slider-wrapper {
+    color: #026cd1;
+    display: none;
+}
+
+#create-new-sbu .new-sbu-tab.v-tab--active {
+    border: 2px solid #026cd1;
+    border-bottom: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    color: #026cd1;
+}
+
+#create-new-sbu .new-sbu-tab.v-tab--active::before {
+    background: #FFFFFF;
+}
+
+#create-new-sbu .new-sbu-tab.v-tab:hover {
+    color: #026cd1;
+    background: #FFFFFF;
+}
+
+#create-new-sbu .v-slide-group__wrapper {
+    display: block;
+}
+
+#create-new-sbu .theme--light.v-tabs>.v-tabs-bar {
+    height: auto;
+    background: #def0ff;
+}
+
+#create-new-sbu .v-window.tab-container.v-item-group.theme--light.v-tabs-items {
+    border: 2px solid #026cd1;
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 10px;
+    border-top: none;
+    min-height: 500px;
+}
+
+#create-new-sbu .new-sbu-tab.v-tab:last-child {
+    border-bottom: 2px solid #026cd1;
+    flex-grow: 100;
+    cursor: unset;
+    /* background: #def0ff; */
+}
+
+#create-new-sbu .new-sbu-tab.v-tab:last-child:hover {
+    color: #FFFFFF;
+    background: #FFFFFF;
+}
+
+/* @media only screen and (max-width: 1300px) {
+}
+@media only screen and (max-width: 1050px) {
+} */
