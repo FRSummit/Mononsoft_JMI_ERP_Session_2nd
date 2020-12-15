@@ -5,7 +5,7 @@
     </div>
     <div class="breadcrumb-section">
       <!-- <p class="breadcrumb">{{ pathName }}</p> -->
-      <p class="breadcrumb">
+      <p class="breadcrumb-sec">
         <a v-for="(p, i) in paths" :key="i"
           ><span @click="sbuClick(p.name)">{{ p.name }}</span
           ><span v-if="p.sep"> > </span></a
@@ -54,7 +54,7 @@ export default {
   line-height: 1;
   margin-bottom: 10px;
 }
-#sbu-heading .breadcrumb {
+#sbu-heading .breadcrumb-sec {
   padding: 0 0;
   display: block;
   margin: 0 0;
@@ -63,7 +63,7 @@ export default {
   text-decoration: none;
   font-size: 11px;
 }
-#sbu-heading .breadcrumb a span:nth-child(odd) {
+#sbu-heading .breadcrumb-sec a span:nth-child(odd) {
   color: #026cd1;
   cursor: pointer;
 }

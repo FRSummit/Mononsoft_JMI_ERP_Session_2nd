@@ -6,6 +6,8 @@
       :pagingEnd="pageDataEnd"
       :totalPage="totalPagesData"
       :routeName="routeName"
+      v-on:print="onPrintClick"
+      v-on:excel="onExcelClick"
     />
     <table
       id="sbu-data-table"
@@ -65,6 +67,90 @@
         </td>
       </tr>
     </table>
+
+    <div
+      class="container"
+      id="cont"
+      style="width: 100%; margin: 0; padding: 0; max-width: 100%"
+    >
+      <h2>Basic Table</h2>
+      <p id="my-ph">
+        The .table class adds basic styling (light padding and only horizontal
+        dividers) to a table:
+      </p>
+      <table class="table" id="sbu-table" style="border-top: 1px solid #e6e6e6">
+        <thead>
+          <tr>
+            <th
+              v-for="(head, i) in sub_data_table_headers"
+              :key="i"
+              style="border: none"
+            >
+              {{ head }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(data, i) in sub_data"
+            :key="i"
+            class="sbu-data-tr"
+            style="border: none"
+          >
+            <td style="border-top: none; color: ##222">{{ data.name }}</td>
+            <td style="border-top: none">{{ data.id_number }}</td>
+            <td style="border-top: none">
+              <span @click="sisterConcernClick(i)">{{
+                data.sister_concern
+              }}</span>
+            </td>
+            <td style="border-top: none">{{ data.active_user }}</td>
+            <td
+              style="border-top: none"
+              :class="sbuStatusIconColor(data.status)"
+            >
+              <!-- <i id="status-square" class="fas fa-square"></i>{{ sbuStatusIconColor(data.status) }} -->
+              <i
+                id="status-square"
+                class="fas fa-square"
+                :class="sbuStatusIconColor(data.status)"
+              ></i
+              >{{ data.status }}
+            </td>
+            <td style="border-top: none">
+              <label class="label">
+                <div class="toggle">
+                  <input
+                    class="toggle-state"
+                    type="checkbox"
+                    name="check"
+                    value="check"
+                  />
+                  <div class="indicator"></div>
+                </div>
+                <span class="toggle-btn-tooltip-txt">Bring Offline</span>
+              </label>
+              <div class="edit-btn-sec">
+                <img
+                  class="edit-btn"
+                  src="../../../../assets/icons/edit.svg"
+                  alt="edit"
+                />
+                <span class="edit-btn-tooltip-txt">Edit</span>
+              </div>
+              <div class="del-btn-sec">
+                <img
+                  class="del-btn"
+                  src="../../../../assets/icons/delete.svg"
+                  alt="del"
+                />
+                <span class="del-btn-tooltip-txt">Delete</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -77,6 +163,11 @@ import ERPSidebarService from "../../../../service/ERPSidebarService";
 const service = new ERPSidebarService();
 import SBUStatus from "../../../../models/SBU_Status";
 const sbuStatus = new SBUStatus();
+// import env from "../../../../environment";
+import jsPDF from 'jspdf' 
+import 'jspdf-autotable';
+import CustomJs from './Custom'
+const customJs = new CustomJs()
 
 export default {
   components: {
@@ -93,7 +184,14 @@ export default {
       pageDataStart: 1,
       pageDataEnd: 12,
       totalPagesData: 1003,
-      sub_data_table_headers: ['Name', 'Id Number', 'Sister COncern', 'Active User', 'Status', ''],
+      sub_data_table_headers: [
+        "Name",
+        "Id Number",
+        "Sister COncern",
+        "Active User",
+        "Status",
+        "",
+      ],
       sub_data: [],
       switch1: true,
       defaultSBUtable: true,
@@ -136,7 +234,46 @@ export default {
       console.log(id);
       console.log(this.sub_data[id]);
       this.pathName += " > Sister Concern";
-      this.$router.replace("/adm/settings&management/sbu/sbu-sister-concern:" + id);
+      this.$router.replace(
+        "/adm/settings&management/sbu/sbu-sister-concern:" + id
+      );
+    },
+    onPrintClick() {
+      // this.$htmlToPaper("cont", env.printOption, () => {
+      //   console.warn("done");
+      // });
+      customJs.test(this.sub_data)
+    },
+    onExcelClick() {
+      console.log("excel");
+      /*const doc = new jsPDF();
+      // const contentHtml = this.$refs.content.innerHTML;
+      const contentHtml = document.getElementById('cont');
+      doc.fromHTML(contentHtml, 15, 15, {
+        width: 170,
+      });
+      doc.save("sample.pdf");*/
+      // var source =  this.$refs["cont"];
+      console.log(this.sub_data)
+            let rows = [];
+            let columnHeader = ['NAME', 'ID NUMBER', 'SISTER CONCERN', 'ACTIVE USER', 'STATUS'];
+            let pdfName = 'Schedule';
+            this.sub_data.forEach(element => {
+                var temp = [
+                    element.name || '',
+                    element.id_number || '',
+                    element.sister_concern || '',
+                    element.active_user || '',
+                    element.status || '',
+                ];
+                rows.push(temp);
+            });
+            // var doc = new jsPDF();
+            var doc = new jsPDF('p', 'pt');
+            // doc.autoTable(columnHeader, rows, { startY: 10 });
+            doc.autoTable(columnHeader, rows);
+            doc.save(pdfName + '.pdf');
+            // doc.autoPrint(columnHeader, rows);
     },
   },
 };

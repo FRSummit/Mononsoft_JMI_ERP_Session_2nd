@@ -42,6 +42,11 @@ export const router = new VueRouter({
       component: () => import('../views/private_views/ADM/SBU/SBU.vue')
     },
     {
+      path: '/adm/settings&management/test',
+      name: 'Test',
+      component: () => import('../views/private_views/ADM/SBU/Test.vue')
+    },
+    {
       path: '/adm/settings&management/sbu/sbu-sister-concern:id',
       name: 'Sister Concern',
       component: () => import('../views/private_views/ADM/SBU/SBU-SisterConcern.vue')

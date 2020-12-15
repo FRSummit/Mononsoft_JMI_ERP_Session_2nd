@@ -67,11 +67,13 @@
               src="../../../../assets/icons/print.svg"
               alt="print"
               class="print"
+              @click="print()"
             />
             <img
               src="../../../../assets/icons/excel.svg"
               alt="excel"
               class="excel"
+              @click="generateExcel()"
             />
             <img
               src="../../../../assets/icons/filter.svg"
@@ -92,7 +94,7 @@ export default {
   props: ["pagingStart", "pagingEnd", "totalPage", "routeName"],
   data() {
     return {
-      routeName_: this.routeName,
+      routeName_: this.routeName
     };
   },
   created() {
@@ -116,6 +118,12 @@ export default {
     addnewClick() {
       this.$router.replace("/adm/settings&management/sbu/create-new-sbu");
     },
+    print() {
+      this.$emit("print");
+    },
+    generateExcel() {
+      this.$emit("excel");
+    }
   },
 };
 </script>
@@ -321,8 +329,8 @@ export default {
   padding: 0 10px;
 }
 #sbu-pagination-sidebar .optionbar-inner img {
-  padding: 0 10px;
-  width: 40px;
+  margin: 0 10px;
+  /* width: 40px; */
   height: 18px;
   cursor: pointer;
 }

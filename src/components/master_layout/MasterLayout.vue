@@ -110,11 +110,10 @@ export default {
   data() {
     return {
       sidenav: false,
-      authenticated: this.$store.state.userIsAuthorized
+      authenticated: this.$store.state.userIsAuthorized,
     };
   },
-  created() {
-  },
+  created() {},
   mounted() {},
   methods: {
     toggleNav() {
@@ -169,12 +168,15 @@ export default {
       }
     },
     profileArrowRotation() {
-      if(document.querySelector('.profile-arrow').className === "profile-arrow") {
-        document.querySelector('.profile-arrow').className = "profile-arrow profile-arrow-rotation"
+      if (
+        document.querySelector(".profile-arrow").className === "profile-arrow"
+      ) {
+        document.querySelector(".profile-arrow").className =
+          "profile-arrow profile-arrow-rotation";
       } else {
-        document.querySelector('.profile-arrow').className = "profile-arrow"
+        document.querySelector(".profile-arrow").className = "profile-arrow";
       }
-    }
+    },
   },
 };
 </script>
@@ -186,6 +188,9 @@ export default {
   padding: 7px 0;
   width: 100%;
   overflow: hidden;
+  position: fixed;
+  z-index: 9;
+  top: 0;
 }
 .left-section {
   float: left;
@@ -344,6 +349,7 @@ export default {
   padding: 10px;
   padding-right: 0;
   margin-left: 60px;
+  margin-top: 60px;
 }
 
 /* Footer */
@@ -359,6 +365,7 @@ export default {
   font-family: "Roboto";
   font-size: 10px;
   text-align: center;
+  transition: 0.5s;
 }
 .footer p {
   display: inline-block;
