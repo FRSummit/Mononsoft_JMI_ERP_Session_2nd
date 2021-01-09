@@ -48,17 +48,17 @@ export default class SBUStatus {
         var mywindow = window.open('', 'PRINT');
 
         mywindow.document.write(
-            '<html>'+
-                '<head>'+
-                    '<title>' + document.title + '</title>' + 
-                    '<link rel="stylesheet" href=""/>' + 
-                    '<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>' + 
-                    '<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css"/>' + 
-                    '<script src="https://code.jquery.com/jquery-3.5.1.js"></script>' + 
-                    '<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>' + 
-                    '<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>' + 
-                    '<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>'
-            );
+            '<html>' +
+            '<head>' +
+            '<title>' + document.title + '</title>' +
+            '<link rel="stylesheet" href=""/>' +
+            '<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>' +
+            '<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css"/>' +
+            '<script src="https://code.jquery.com/jquery-3.5.1.js"></script>' +
+            '<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>' +
+            '<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>' +
+            '<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>'
+        );
         mywindow.document.write('</head><body >');
         mywindow.document.write('<h1>' + 'document.title' + '</h1>');
         // mywindow.document.write(document.getElementById('cont').innerHTML);
@@ -78,10 +78,34 @@ export default class SBUStatus {
         let tbody = document.createElement('tbody')
         table.appendChild(tbody)
 
-        let tbody_tr = document.createElement('tr')
-        tbody_tr.innerHTML = '<td>Tiger Nixon</td> <td>Edinburgh</td> <td>61</td> <td>2011/04/25</td> <td>$320,800</td>'
-        tbody.appendChild(tbody_tr)
-        // for(let i=0; i<pera.)
+        // let tbody_tr = document.createElement('tr')
+        // tbody_tr.innerHTML = '<td>Tiger Nixon</td> <td>Edinburgh</td> <td>61</td> <td>2011/04/25</td> <td>$320,800</td>'
+        // tbody.appendChild(tbody_tr)
+        for (let i = 0; i < pera.length; i++) {
+            let tbody_tr = document.createElement('tr')
+
+            let td_name = document.createElement('td')
+            td_name.innerText = pera[i].name
+            tbody_tr.appendChild(td_name)
+
+            let td_id_number = document.createElement('td')
+            td_id_number.innerText = pera[i].id_number
+            tbody_tr.appendChild(td_id_number)
+
+            let td_sister_concern = document.createElement('td')
+            td_sister_concern.innerText = pera[i].sister_concern
+            tbody_tr.appendChild(td_sister_concern)
+
+            let td_active_user = document.createElement('td')
+            td_active_user.innerText = pera[i].active_user
+            tbody_tr.appendChild(td_active_user)
+
+            let td_status = document.createElement('td')
+            td_status.innerText = pera[i].status
+            tbody_tr.appendChild(td_status)
+            
+            tbody.appendChild(tbody_tr)
+        }
 
         // Table
         let div = document.createElement('div')

@@ -19,6 +19,7 @@ const actions = {
                 user => {
                     commit('loginSuccess', user);
                     router.push('/landing-page');
+                    // window.location.href = env.baseURL + '/landing-page'
                 },
                 error => {
                     commit('loginFailure', error);

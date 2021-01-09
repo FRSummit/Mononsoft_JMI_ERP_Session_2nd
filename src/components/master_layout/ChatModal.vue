@@ -68,9 +68,12 @@ export default {
   cursor: pointer;
 }
 .chat-inner-sec {
-  position: absolute;
+  /* position: absolute;
   top: 22px;
-  right: -180px;
+  right: -180px; */
+  position: fixed;
+  top: 64px;
+  right: 70px;
   color: #222;
   background: #fff;
   font-family: "Roboto";

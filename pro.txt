@@ -1,24 +1,17 @@
 >> create project
 >> vue add vuetify
->> npm install --save axios vue-axios
 >> npm install materialize-css@next
 >> import $ from 'jquery'
 >> npm install --save config vee-validate
->> Competitors Data Management
-    Pagination : 
-        1. https://bootstrap-vue.org/docs/components/pagination
-        2. raymondcamden.com/2018/02/08/building-table-sorting-and-pagination-in-vuejs
-        3. https://codepen.io/Bartimeys/pen/gvbWdM
-        4. https://dev.to/instantwebtoolsnet/datatables-with-vuejs-vuetify-pagination-rest-api-3jji
-        
->> npm install --save-dev @fortawesome/fontawesome-free
->> npm install materialize-css@next
->> 
->> 
->> 
->> 
->> 
->> 
+>> npm install bcryptjs
+>> npm install --save lodash.debounce
+>> npm install vue-html-to-paper --save
+>> npm install vue bootstrap-vue bootstrap
+>> npm install jspdf --save
+>> npm install --save jspdf-autotable
+>> npm install jquery --save
+>> npm install print-js --save
+>> npm install less less-loader --save-dev
 >> 
 >> 
 >> 

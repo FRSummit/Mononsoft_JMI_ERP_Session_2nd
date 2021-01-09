@@ -35,7 +35,7 @@
         </div>
       </div>
       <p class="profile_logout">
-        <router-link to="/login">Logout</router-link>
+        <a @click="logingOut">Logout</a>
       </p>
     </div>
   </div>
@@ -45,6 +45,7 @@
 import ERPSidebarService from "../../service/ERPSidebarService";
 const service = new ERPSidebarService();
 import { mapState } from "vuex";
+import env from '../../environment'
 
 export default {
   data() {
@@ -80,6 +81,11 @@ export default {
     });
   },
   methods: {
+    logingOut() {
+      // this.$router.push('/login')
+      window.location.href = env.baseURL + '/login'
+      // console.log(env.baseURL)
+    }
   },
 };
 </script>
@@ -87,17 +93,20 @@ export default {
 <style scoped>
 .profile-tri-icon {
   position: absolute;
-  top: 44px;
+  top: 47px;
   width: 16px;
   display: block;
   margin-left: 8px;
   cursor: pointer;
 }
 .profile-modal-inner {
-  position: absolute;
-  background: #ffffff;
+  /* position: absolute;
   right: 10px;
-  top: 66px;
+  top: 66px; */
+  position: fixed;
+  top: 64px;
+  right: 16px;
+  background: #ffffff;
   width: 300px;
   z-index: 5;
   font-family: "Roboto";

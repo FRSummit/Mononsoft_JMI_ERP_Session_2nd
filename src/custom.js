@@ -1,7 +1,7 @@
 // console.log('this is custom.js')
 const $ = require('jquery');
 
-$(document).ready(function() {
+$(document).ready(function () {
     // $('#example').DataTable( {
     //     dom: 'Bfrtip',
     //     buttons: [
@@ -9,4 +9,6 @@ $(document).ready(function() {
     //     ]
     // } );
     console.log('Hello')
-} );
+    
+
+});

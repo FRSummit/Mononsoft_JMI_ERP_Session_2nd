@@ -44,13 +44,9 @@
       </div>
       <div class="searchbar-optionbar-section">
         <div class="searchbar-section">
-          <!-- <div
-            class="add-new-btn"
-            v-if="routeName_ === 'Strategic Business Unit'"
-          > -->
           <div
             class="add-new-btn"
-            v-if="routeName_"
+            v-if="routeName_ === 'Strategic Business Unit'"
           >
             <a @click="addnewClick()"><span>+</span>Add</a>
           </div>
@@ -98,7 +94,7 @@ export default {
   props: ["pagingStart", "pagingEnd", "totalPage", "routeName"],
   data() {
     return {
-      routeName_: false
+      routeName_: this.routeName
     };
   },
   created() {
@@ -117,39 +113,16 @@ export default {
     let salt_ = bcrypt.genSaltSync(10);
     let hash_ = bcrypt.hashSync(password, salt_);
     console.log(hash_);
-    this.addButtonEnable()
   },
   methods: {
     addnewClick() {
-      switch(this.routeName) {
-        case 'Strategic Business Unit':
-          this.$router.replace("/adm/settings&management/sbu/create-new-sbu");
-          break
-        case 'Sales Center':
-          this.$router.replace("/sd/settings&management/sales-center/create-new-geo-location");
-          break
-        default:
-          break
-      }
-      
+      this.$router.replace("/adm/settings&management/sbu/create-new-sbu");
     },
     print() {
       this.$emit("print");
     },
     generateExcel() {
       this.$emit("excel");
-    },
-    addButtonEnable() {
-      switch(this.routeName) {
-        case 'Strategic Business Unit':
-          this.routeName_ = true
-          break
-        case 'Sales Center':
-          this.routeName_ = true
-          break
-        default:
-          break
-      }
     }
   },
 };
@@ -161,7 +134,6 @@ export default {
   margin-top: 20px;
   width: 100%;
   display: flex;
-  padding: 0 10px;
 }
 /* Pagination - start */
 #sbu-pagination-sidebar .pagination-section {

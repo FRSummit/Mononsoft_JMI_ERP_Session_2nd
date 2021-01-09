@@ -47,6 +47,8 @@ export function configureFakeBackend() {
                     } else {
                         // else return error
                         reject('Username or password is incorrect');
+                        document.getElementById('error-message').innerHTML = '*incorrect username or password'
+                        document.getElementById('error-message').className = ''
                     }
 
                     return;

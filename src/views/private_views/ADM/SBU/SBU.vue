@@ -198,6 +198,7 @@ export default {
     };
   },
   created() {
+    this.$emit('routeName', this.$route.name);
     console.log(this.$route.name);
     // this.pathName = brd.createBreadcrumbBita(this.parentPath, this.$route.name);
     this.createBreadcrumbData();
@@ -290,6 +291,7 @@ export default {
   width: 100%;
   display: block;
   border: none;
+    padding: 0 10px;
 }
 #sbu tr:first-child {
   border-bottom: 1px solid #999999;

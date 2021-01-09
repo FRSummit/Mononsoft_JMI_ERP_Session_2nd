@@ -72,9 +72,12 @@ export default {
   cursor: pointer;
 }
 .notification-inner-sec {
-  position: absolute;
+  /* position: absolute;
   top: 22px;
-  right: -180px;
+  right: -180px; */
+  position: fixed;
+  top: 64px;
+  right: 20px;
   color: #222;
   background: #fff;
   font-family: "Roboto";

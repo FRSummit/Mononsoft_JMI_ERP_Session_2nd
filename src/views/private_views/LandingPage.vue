@@ -9,6 +9,10 @@
     <br />
     <router-link to="/adm/settings&amp;management/sbu">SBU</router-link>
     <br />
+    <router-link to="/sd/settings&amp;management/sales-center">Sales Center</router-link>
+    <br />
+    <router-link to="/sd/settings&amp;management/geo-location">Geo Location</router-link>
+    <br />
     <br />
     <h1 id="printMe">Print me!</h1>
     <br />
@@ -26,6 +30,9 @@ export default {
     return {
       output: null,
     };
+  },
+  created() {
+    this.$emit('routeName', this.$route.name);
   },
   methods: {
     print() {

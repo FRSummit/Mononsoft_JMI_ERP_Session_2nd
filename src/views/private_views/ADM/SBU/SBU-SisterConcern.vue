@@ -77,6 +77,7 @@ export default {
     };
   },
   created() {
+    this.$emit('routeName', this.$route.name);
     this.createBreadcrumbData();
     service.getSBUSisterConcernData().then((res) => {
       this.sbu_sister_concern_data = res.data;
@@ -126,6 +127,7 @@ export default {
   width: 100%;
   display: block;
   border: none;
+    padding: 0 10px;
 }
 #sbu-sister-concern tr:first-child {
   border-bottom: 1px solid #999999;

@@ -9,6 +9,8 @@ export default {
     returnTo: 'http://localhost:8081'
   },
   // apiBaseUrl: "http://192.168.10.34:3001"
+  baseURL: "http://localhost:8081",
+  // baseURL: "http://203.188.246.138:8887",
   apiBaseUrl: "http://frs-json-server.herokuapp.com",
   printOption: {
     name: "_blank",

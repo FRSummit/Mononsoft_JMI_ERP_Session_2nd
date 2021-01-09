@@ -64,6 +64,10 @@ export default class PostService {
   getSBUSisterConcernData() {
     return axios.get('/sister_concern_data');
   }
+
+  getSDGeoLocation() {
+    return axios.get('/geo_location');
+  }
 }
 
 

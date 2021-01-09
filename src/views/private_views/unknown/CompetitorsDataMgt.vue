@@ -157,6 +157,7 @@ export default {
     };
   },
   created() {
+    this.$emit('routeName', this.$route.name);
     service.getCompetitorsDataMgt().then((res) => {
       this.competitor_table_data = res.data;
     });

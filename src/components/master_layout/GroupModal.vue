@@ -69,7 +69,8 @@ export default {
   margin-top: 16px;
   margin-left: -94px;
   z-index: 5;
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
 }
 .group-list-section .comapny-sec {
   padding: 0 10px;

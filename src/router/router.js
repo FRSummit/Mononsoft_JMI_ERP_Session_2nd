@@ -6,20 +6,26 @@ Vue.use(VueRouter)
 export const router = new VueRouter({
   mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: () => import('../views/public_views/Home.vue')
-    },
+    // {
+    //   path: '/',
+    //   name: 'Home',
+    //   component: () => import('../views/public_views/Home.vue')
+    // },
     {
       path: '/about',
       name: 'About',
       component: () => import('../views/public_views/About.vue')
     },
     {
-      path: '/login',
+      // path: '/login',
+      path: '/',
       name: 'Login',
-      component: () => import('../views/public_views/Login.vue')
+      component: () => import('../views/public_views/Login/Login.vue')
+    },
+    {
+      path: '/login-v1',
+      name: 'Login',
+      component: () => import('../views/public_views/Login/LoginV1.vue')
     },
     {
       path: '/signup',
@@ -56,6 +62,16 @@ export const router = new VueRouter({
       name: 'Create New Strategic Business Unit (SBU)',
       component: () => import('../views/private_views/ADM/SBU/CreateNewSBU.vue')
     },
+    {
+      path: '/sd/settings&management/sales-center',
+      name: 'Sales Center',
+      component: () => import('../views/private_views/SD/SalesArea/SalesCenter.vue')
+    },
+    {
+      path: '/sd/settings&management/geo-location',
+      name: 'Geo Location',
+      component: () => import('../views/private_views/SD/SalesArea/GeoLocation.vue')
+    },
 
     // otherwise redirect to home
     {
@@ -68,7 +84,7 @@ export const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   console.log('before each')
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/', '/login', '/signup'];
+  const publicPages = ['/', '/login', '/login-v1', '/signup'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 

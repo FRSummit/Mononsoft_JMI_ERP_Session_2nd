@@ -15,6 +15,10 @@
 export default {
   name: 'Home',
   components: {
+  },
+  created() {
+    // this.$emit('routeName', this.$route.name);
+    // this.$router.push('/login')
   }
 }
 </script>

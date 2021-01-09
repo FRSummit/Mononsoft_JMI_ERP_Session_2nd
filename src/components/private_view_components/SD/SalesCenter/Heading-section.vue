@@ -47,21 +47,12 @@ export default {
 </script>
 
 <style scoped>
-#sbu-heading {
-  padding: 10px 0 0;
-}
-#sbu-heading .title-section {
-  padding: 0 10px;
-}
 #sbu-heading .page-title {
   margin: 0 0;
   font-size: 22px;
   font-weight: 500;
   line-height: 1;
   margin-bottom: 10px;
-}
-#sbu-heading .breadcrumb-section {
-  padding: 0 10px;
 }
 #sbu-heading .breadcrumb-sec {
   padding: 0 0;

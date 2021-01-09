@@ -76,6 +76,7 @@ export default {
     };
   },
   created() {
+    this.$emit('routeName', this.$route.name);
     this.createBreadcrumbData();
   },
   methods: {
