@@ -98,7 +98,7 @@ export default {
     };
   },
   created() {
-    console.log("Route name : " + this.routeName);
+    // console.log("Route name : " + this.routeName);
     // console.log(bcrypt);
     let password = "secret";
     let passwordHash;
@@ -109,14 +109,14 @@ export default {
       });
     });
     console.log(passwordHash);
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>");
+    // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>");
     let salt_ = bcrypt.genSaltSync(10);
     let hash_ = bcrypt.hashSync(password, salt_);
     console.log(hash_);
   },
   methods: {
     addnewClick() {
-      this.$router.replace("/adm/settings&management/sbu/create-new-sbu");
+      this.$router.replace("/adm/sbu/create-new-sbu");
     },
     print() {
       this.$emit("print");

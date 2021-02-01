@@ -1,11 +1,9 @@
 <template>
   <div id="profile-modal" class="profile-modal hide">
     <div class="profile-modal-triangle-sec">
-      <img
-        src="../../assets/icons/triangle.svg"
-        alt="profile-tri"
-        class="profile-tri-icon"
-      />
+      <span class="profile-tri-icon">
+        <i class="fas fa-caret-up"></i>
+      </span>
     </div>
     <div class="profile-modal-inner">
       <div class="profile-img-title-designation">
@@ -42,8 +40,8 @@
 </template>
 
 <script>
-import ERPSidebarService from "../../service/ERPSidebarService";
-const service = new ERPSidebarService();
+// import ERPSidebarService from "../../service/ERPSidebarService";
+// const service = new ERPSidebarService();
 import { mapState } from "vuex";
 import env from '../../environment'
 
@@ -51,8 +49,8 @@ export default {
   data() {
     return {
       user: {
-        name: "F R Summit",
-        designation: "Sr. Software Engineer",
+        name: JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).user_detils.name : "Fayazur Rahman Summit",
+        designation: JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).user_detils.role_name : "Sr. Software Engineer",
         role: [
           {
             role: "Admin",
@@ -75,10 +73,11 @@ export default {
     }),
   },
   created() {
-    service.getAllUser().then((res) => {
-      this.user = res.data[0];
-      this.progress = false;
-    });
+    // service.getAllUser().then((res) => {
+    //   this.user = res.data[0];
+    //   this.progress = false;
+    // });
+    console.log(JSON.parse(localStorage.getItem('user')).user_detils.name)
   },
   methods: {
     logingOut() {
@@ -91,97 +90,4 @@ export default {
 </script>
 
 <style scoped>
-.profile-tri-icon {
-  position: absolute;
-  top: 47px;
-  width: 16px;
-  display: block;
-  margin-left: 8px;
-  cursor: pointer;
-}
-.profile-modal-inner {
-  /* position: absolute;
-  right: 10px;
-  top: 66px; */
-  position: fixed;
-  top: 64px;
-  right: 16px;
-  background: #ffffff;
-  width: 300px;
-  z-index: 5;
-  font-family: "Roboto";
-  box-shadow: 0px 0px 22px -6px #026cd1;
-  padding-top: 20px;
-  padding-bottom: 30px;
-}
-.profile-img-title-designation {
-  text-align: center;
-}
-.profile-img {
-  width: 50px;
-  border-radius: 50px;
-}
-.profile-title {
-  font-size: 18px;
-  color: #222222;
-  font-weight: bold;
-  margin: 0;
-}
-.profile-designation {
-  font-size: 14px;
-  color: #757575;
-  margin: 0;
-}
-.profile-role-section {
-  padding: 0 40px;
-  margin-top: 20px;
-}
-.profile-modal-role-text {
-  font-size: 14px;
-  font-weight: bold;
-  color: #222222;
-  margin: 0;
-  margin-bottom: 6px;
-}
-.profile-role-role {
-  font-size: 16px;
-  color: #555555;
-  margin: 0;
-  padding: 2px 0 2px 10px;
-  cursor: pointer;
-}
-.profile-my-profile {
-  padding: 0 40px;
-  margin-top: 20px;
-}
-.profile-my-profile-text {
-  font-size: 14px;
-  font-weight: bold;
-  color: #222222;
-  margin: 0;
-  margin-bottom: 6px;
-}
-.profile-my-profile div {
-  margin: 6px 0;
-}
-.profile-my-profile div a {
-  font-size: 16px;
-  color: #555555;
-  margin: 0;
-  padding: 2px 0 2px 10px;
-  cursor: pointer;
-  text-decoration: none;
-}
-.profile_logout {
-  font-size: 16px;
-  color: #222222;
-  margin: 20px 0 0;
-  margin-bottom: 6px;
-  cursor: pointer;
-  text-align: center;
-}
-.profile_logout a {
-  text-decoration: none;
-  color: #222222;
-}
 </style>

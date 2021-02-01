@@ -100,7 +100,7 @@ export default {
   },
   methods: {
     rememberLoginCredentials() {
-      console.log('Checked : ' + this.checkedCategories)
+      // console.log('Checked : ' + this.checkedCategories)
       if(this.checkedCategories) {
         document.querySelector('.blmd-wrapp .blmd-continer form#login-form .remember-section label').className = 'checked-remember'
       } else {

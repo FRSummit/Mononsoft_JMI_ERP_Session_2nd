@@ -1,0 +1,86 @@
+#plan-calendar.plan-calendar {
+    padding: 20px;
+
+    .plan-calendar-section {
+        background   : #E2EDFA;
+        border-radius: 8px;
+        padding      : 10px;
+
+        .plan-calendar-inner-section {
+            .plan-calendar-top-row {
+                .plan-calendar-top-row-inner {
+                    display : block;
+                    width   : 100%;
+                    overflow: hidden;
+
+                    .left-section {
+                        display   : inline-block;
+                        width     : 50%;
+                        float     : left;
+                        text-align: left;
+
+                        .left-section-inner {
+                            display  : block;
+                            font-size: 13px;
+                            color    : #36454F;
+                            overflow : hidden;
+
+                            .default-text {
+                                display: inline-block;
+
+                                span {
+                                    color      : #000000;
+                                    font-size  : 16px;
+                                    font-weight: 500;
+                                }
+                            }
+
+                            .territory-name {
+                                display    : inline-block;
+                                margin-left: 10px;
+
+                                span {
+                                    color      : #026CD1;
+                                    font-size  : 16px;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+
+                    .right-section {
+                        display   : inline-block;
+                        width     : 50%;
+                        float     : right;
+                        text-align: right;
+
+                        .right-section-inner {
+
+                            .add-btn-section {
+                                display       : inline-block;
+                                vertical-align: middle;
+                                margin-left   : 16px;
+
+                                span.add-btn-inner {
+                                    background   : #FFFFFF;
+                                    padding      : 5px 9px 4px;
+                                    display      : block;
+                                    overflow     : hidden;
+                                    border-radius: 50%;
+                                    cursor       : pointer;
+
+                                    svg {
+                                        color    : #DF2A43;
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .plan-calendar-row {}
+        }
+    }
+}

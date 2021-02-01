@@ -82,7 +82,7 @@ export default {
     service.getSBUSisterConcernData().then((res) => {
       this.sbu_sister_concern_data = res.data;
     });
-    console.log(this.$route.path.split(":")[1]);
+    // console.log(this.$route.path.split(":")[1]);
   },
   methods: {
     createBreadcrumbData() {

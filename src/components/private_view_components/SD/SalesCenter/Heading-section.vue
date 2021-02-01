@@ -39,7 +39,7 @@ export default {
     },
     sbuClick(name) {
       if(name === "SBU"){
-        this.$router.replace('/adm/settings&management/sbu')
+        this.$router.replace('/adm/sbu')
       }
     }
   },

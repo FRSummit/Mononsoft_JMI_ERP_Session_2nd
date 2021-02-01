@@ -16,8 +16,11 @@ export default {
 </script>
 
 <style>
+body {
+  scrollbar-width: 4px;
+}
 body::-webkit-scrollbar {
-  width: 2px;
+  width: 4px;
 }
 body::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;

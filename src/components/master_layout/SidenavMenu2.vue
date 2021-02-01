@@ -5,7 +5,8 @@
             <div class="icon-inner">
                 <div class="search-icon">
                     <span class="search-primary-icon">
-                        <i class="fas fa-search"></i>
+                        <!-- <i class="fas fa-search"></i> -->
+                        <i class="zmdi zmdi-search"></i>
                     </span>
                 </div>
                 <div class="menu-list">
@@ -65,29 +66,34 @@
           <div class="primary-menu-section">
             <div class="primary-menu-section-inner" v-for="(primary, i) in menu_list" :key="i">
                 <div :id="'primary-menu-icon-inner-' + i" class="primary-menu-icon-inner">
-                <span :id="'primary-icon-' + i" class="primary-icon" @click="primaryMenuClick(i)">
+                <span :id="'primary-icon-' + i" class="primary-icon" @click="primaryMenuClick(i, primary)">
                     <i :class="primary.icon_class"></i>
                 </span>
                 </div>
                 <div class="primary-menu-area-inner">
-                <div class="primary-menu-name-section" @click="primaryMenuClick(i)" @mouseover="primaryMenuMouseOver('primary-menu-icon-inner', i)" @mouseleave="primaryMenuMouseLeave('primary-menu-icon-inner', i)">
+                <div class="primary-menu-name-section" @click="primaryMenuClick(i, primary)" @mouseover="primaryMenuMouseOver('primary-menu-icon-inner', i)" @mouseleave="primaryMenuMouseLeave('primary-menu-icon-inner', i)">
                     <p :id="'primary-menu-name-' + i" class="primary-menu-name">
-                        {{ primary.primary_menu }}
-                        <span class="right-arrow-icon" v-if="primary.secondary_menu_list"><i class="fas fa-chevron-right"></i></span>
-                        <span class="down-arrow-icon hide" v-if="primary.secondary_menu_list"><i class="fas fa-chevron-down"></i></span>
+                        <!-- {{ primary.primary_menu }} -->
+                        {{ primary.menu_name }}
+                        <!-- <span class="right-arrow-icon" v-if="primary.secondary_menu_list"><i class="fas fa-chevron-right"></i></span>
+                        <span class="down-arrow-icon hide" v-if="primary.secondary_menu_list"><i class="fas fa-chevron-down"></i></span> -->
+                        <span class="right-arrow-icon" v-if="primary.menu"><i class="fas fa-chevron-right"></i></span>
+                        <span class="down-arrow-icon hide" v-if="primary.menu"><i class="fas fa-chevron-down"></i></span>
                     </p>
                 </div>
 
                 <div :id="'secondary-menu-section-' + i" class="secondary-menu-section hide">
-                    <div class="secondary-menu-section-inner" v-for="(secondary, j) in primary.secondary_menu_list" :key="j">
+                    <!-- <div class="secondary-menu-section-inner" v-for="(secondary, j) in primary.secondary_menu_list" :key="j"> -->
+                    <div class="secondary-menu-section-inner" v-for="(secondary, j) in primary.menu" :key="j">
                     <div :id="'secondary-menu-icon-inner-' + i + '-' + j" class="secondary-menu-icon-inner">
-                        <span :id="'secondary-icon-' + i + '-' + j" class="secondary-icon" @click="secondaryMenuClick(i, j)">
+                        <span :id="'secondary-icon-' + i + '-' + j" class="secondary-icon" @click="secondaryMenuClick(i, j, secondary)">
                         </span>
                     </div>
                     <div class="secondary-menu-area-inner">
-                        <div class="secondary-menu-name-section" @click="secondaryMenuClick(i, j)" @mouseover="secondaryMenuMouseOver('secondary-menu-icon-inner', i, j)" @mouseleave="secondaryMenuMouseLeave('secondary-menu-icon-inner', i, j)">
+                        <div class="secondary-menu-name-section" @click="secondaryMenuClick(i, j, secondary)" @mouseover="secondaryMenuMouseOver('secondary-menu-icon-inner', i, j)" @mouseleave="secondaryMenuMouseLeave('secondary-menu-icon-inner', i, j)">
                         <p :id="'secondary-menu-name-' + i + '-' + j" class="secondary-menu-name">
-                            {{ secondary.secondary_menu }}
+                            <!-- {{ secondary.secondary_menu }} -->
+                            {{ secondary.menu_name }}
                             <span class="right-arrow-icon" v-if="secondary.tertiary_menu_list"><i class="fas fa-chevron-right"></i></span>
                             <span class="down-arrow-icon hide" v-if="secondary.tertiary_menu_list"><i class="fas fa-chevron-down"></i></span>
                         </p>
@@ -96,12 +102,12 @@
                         <div :id="'tertiary-menu-section-' + i + '-' + j" class="tertiary-menu-section hide">
                         <div class="tertiary-menu-section-inner" v-for="(tertiary, k) in secondary.tertiary_menu_list" :key="k">
                             <div :id="'tertiary-menu-icon-inner-' + i + '-' + j + '-' + k" class="tertiary-menu-icon-inner">
-                                <span :id="'tertiary-icon-' + i + '-' + j + '-' + k" class="tertiary-icon" @click="tertiaryMenuClick(i, j, k)">
+                                <span :id="'tertiary-icon-' + i + '-' + j + '-' + k" class="tertiary-icon" @click="tertiaryMenuClick(i, j, k, tertiary)">
                                 <i class="fas fa-chevron-circle-right"></i>
                                 </span>
                             </div>
                             <div class="tertiary-menu-area-inner">
-                            <div class="tertiary-menu-name-section" @click="tertiaryMenuClick(i, j, k)" @mouseover="tertiaryMenuMouseOver('tertiary-menu-icon-inner', i, j, k)" @mouseleave="tertiaryMenuMouseLeave('tertiary-menu-icon-inner', i, j, k)">
+                            <div class="tertiary-menu-name-section" @click="tertiaryMenuClick(i, j, k, tertiary)" @mouseover="tertiaryMenuMouseOver('tertiary-menu-icon-inner', i, j, k)" @mouseleave="tertiaryMenuMouseLeave('tertiary-menu-icon-inner', i, j, k)">
                                 <p :id="'tertiary-menu-name-' + i + '-' + j + '-' + k" class="tertiary-menu-name">
                                     {{ tertiary.tertiary_menu }}
                                     <span class="right-arrow-icon" v-if="secondary.tertiary_menu_list"><i class="fas fa-chevron-right"></i></span>
@@ -112,11 +118,11 @@
                             <div :id="'tertiary-poly-menu-section-' + i + '-' + j + '-' + k" class="tertiary-poly-menu-section hide">
                                 <div class="tertiary-poly-menu-section-inner" v-for="(tertiary_poly, l) in secondary.tertiary_menu_list" :key="l">
                                 <div :id="'tertiary-poly-menu-icon-inner-' + i + '-' + j + '-' + k + '-' + l" class="tertiary-poly-menu-icon-inner">
-                                    <span :id="'tertiary-poly-icon-' + i + '-' + j + '-' + k + '-' + l" class="tertiary-poly-icon" @click="polyTertiaryMenuClick(i, j, k, l)">
+                                    <span :id="'tertiary-poly-icon-' + i + '-' + j + '-' + k + '-' + l" class="tertiary-poly-icon" @click="polyTertiaryMenuClick(i, j, k, l, tertiary_poly)">
                                     </span>
                                 </div>
                                 <div class="tertiary-poly-menu-area-inner">
-                                    <div class="tertiary-poly-menu-name-section" @click="polyTertiaryMenuClick(i, j, k, l)" @mouseover="polyTertiaryMenuMouseOver('tertiary-poly-menu-icon-inner', i, j, k, l)" @mouseleave="polyTertiaryMenuMouseLeave('tertiary-poly-menu-icon-inner', i, j, k, l)">
+                                    <div class="tertiary-poly-menu-name-section" @click="polyTertiaryMenuClick(i, j, k, l, tertiary_poly)" @mouseover="polyTertiaryMenuMouseOver('tertiary-poly-menu-icon-inner', i, j, k, l)" @mouseleave="polyTertiaryMenuMouseLeave('tertiary-poly-menu-icon-inner', i, j, k, l)">
                                         <p :id="'tertiary-poly-menu-name-' + i + '-' + j + '-' + k + '-' + l" class="tertiary-poly-menu-name">{{ tertiary_poly.tertiary_menu }}</p>
                                     </div>
                                 </div>
@@ -137,6 +143,24 @@
           </div>
         </div>
 
+        
+    <div class="bottom-logo-section">
+        <div class="bottom-logo-inner">
+            <div class="erp-logo">
+                <img src="../../assets/images/erp_logo.png" alt="ERP">
+                <p class="logo-version">Version <span>{{ erp_version }}</span></p>
+            </div>
+            <div class="mononsoft-logo">
+                <div class="left-section">
+                    <p class="logo-poweredby">Powered By</p>
+                </div>
+                <div class="right-section">
+                    <img src="../../assets/images/mononsoft_logo.png" alt="ERP">
+                </div>
+            </div>
+        </div>
+    </div>
+
       </div>
     </div>
   </div>
@@ -153,35 +177,43 @@ export default {
   },
   data() {
     return {
-      static_menu_list: [
-        {
-          name: "Dashboard",
-          icon_class: "zmdi zmdi-view-dashboard"
-        },
-        {
-          name: "Quick Access",
-          icon_class: "zmdi zmdi-star",
-          secondary_menu_list: [
-            {
-                secondary_menu: "Recently used",
-            },
-            {
-                secondary_menu: "Favourite"
-            }
-          ]
-        }
-      ],
+    //   static_menu_list: [
+    //     {
+    //       name: "Dashboard",
+    //       icon_class: "zmdi zmdi-view-dashboard"
+    //     },
+    //     {
+    //       name: "Quick Access",
+    //       icon_class: "zmdi zmdi-star",
+    //       secondary_menu_list: [
+    //         {
+    //             secondary_menu: "Recently used",
+    //         },
+    //         {
+    //             secondary_menu: "Favourite"
+    //         }
+    //       ]
+    //     }
+    //   ],
       menu_list: [],
       btn: "primary",
       secondary_arrow_hide_flag: false,
       secondary_menu_display: false,
       secondary_menu_display_id_checker: null,
+      erp_version: "1.00.01"
     };
   },
   created() {
-    service.getAllSidebarMenu().then((res) => {
-      this.menu_list = res.data;
-    });
+  },
+  async mounted() {
+    /*service.getAllSidebarMenu().then((res) => {
+    //   this.menu_list = res.data;
+      console.log(res.data)
+    });*/
+    await service.getWebSideMenu().then( res => {
+      this.menu_list = res.data.data;
+    //   console.log(res.data.data)
+    })
   },
   methods: {
       staticMenuClick(id) {
@@ -223,7 +255,7 @@ export default {
             secondaryMenuText.className = "static-secondary-menu-name"
         }
       },
-      primaryMenuClick(id) {
+      primaryMenuClick(id, menu_details) {
         this.checkStaticMenuIsOpen()
         let secondaryMenuSection = document.querySelector("#secondary-menu-section-" + id)
         let primaryMenuIcon = document.querySelector("#primary-icon-" + id)
@@ -248,8 +280,14 @@ export default {
                 primaryDownIcon.className = "down-arrow-icon hide"
             }
         }
+        if(menu_details.feature && (this.$router.currentRoute.path !== menu_details.feature.url)) {
+            this.$router.push(menu_details.feature.url)
+                .catch( (err) => {
+                    console.log(err)
+                });
+        }
       },
-      secondaryMenuClick(id_i, id_j) {
+      secondaryMenuClick(id_i, id_j, menu_details) {
         let tertiaryMenuSection = document.querySelector("#tertiary-menu-section-" + id_i + "-" + id_j)
         let secondaryMenuIcon = document.querySelector("#secondary-icon-" + id_i + "-" + id_j)
         let secondaryMenuText = document.querySelector("#secondary-menu-name-" + id_i + "-" + id_j)
@@ -273,8 +311,14 @@ export default {
                 secondaryDownIcon.className = "down-arrow-icon hide"
             }
         }
+        if(menu_details.feature && (this.$router.currentRoute.path !== menu_details.feature.url)) {
+            this.$router.push(menu_details.feature.url)
+                .catch( (err) => {
+                    console.log(err)
+                });
+        }
       },
-      tertiaryMenuClick(id_i, id_j, id_k) {
+      tertiaryMenuClick(id_i, id_j, id_k, menu_details) {
         let tertiaryPolyMenuSection = document.querySelector("#tertiary-poly-menu-section-" + id_i + "-" + id_j + "-" + id_k)
         let tertiaryMenuIcon = document.querySelector("#tertiary-icon-" + id_i + "-" + id_j + "-" + id_k)
         let tertiaryMenuText = document.querySelector("#tertiary-menu-name-" + id_i + "-" + id_j + "-" + id_k)
@@ -298,8 +342,11 @@ export default {
                 tertiaryDownIcon.className = "down-arrow-icon hide"
             }
         }
+        if(menu_details.feature && (this.$router.currentRoute.path !== menu_details.feature.url)) {
+            this.$router.push(menu_details.feature.url)
+        }
       },
-      polyTertiaryMenuClick(id_i, id_j, id_k, id_l) {
+      polyTertiaryMenuClick(id_i, id_j, id_k, id_l, menu_details) {
         this.closeAllTertiaryPolyMenuForTertiaryPolyMenuClick()
         let tertiaryPolyMenuIcon = document.querySelector("#tertiary-poly-icon-" + id_i + "-" + id_j + "-" + id_k + "-" + id_l)
         let tertiaryPolyMenuText = document.querySelector("#tertiary-poly-menu-name-" + id_i + "-" + id_j + "-" + id_k + "-" + id_l)
@@ -310,6 +357,9 @@ export default {
         } else {
             tertiaryPolyMenuIcon.className = "tertiary-poly-icon"
             tertiaryPolyMenuText.className = "tertiary-poly-menu-name"
+        }
+        if(menu_details.feature && (this.$router.currentRoute.path !== menu_details.feature.url)) {
+            this.$router.push(menu_details.feature.url)
         }
       },
     //   Static

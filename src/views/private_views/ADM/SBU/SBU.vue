@@ -155,7 +155,8 @@
 </template>
 
 <script>
-import Heading from "../../../../components/private_view_components/ADM/SBU/Heading-section";
+// import Heading from "../../../../components/private_view_components/ADM/SBU/Heading-section";
+import Heading from "../../../../components/master_layout/HeadingTitleBreadcrumb/HeadingTitleBreadcrumb";
 import PaginationSection from "../../../../components/private_view_components/ADM/SBU/PaginationSidebarSection";
 // import BreadcrumbCreation from "../../../../path-specify/PathTree";
 // const brd = new BreadcrumbCreation();
@@ -199,7 +200,7 @@ export default {
   },
   created() {
     this.$emit('routeName', this.$route.name);
-    console.log(this.$route.name);
+    // console.log(this.$route.name);
     // this.pathName = brd.createBreadcrumbBita(this.parentPath, this.$route.name);
     this.createBreadcrumbData();
     service.getSBUData().then((res) => {
@@ -232,11 +233,11 @@ export default {
       return status;
     },
     sisterConcernClick(id) {
-      console.log(id);
-      console.log(this.sub_data[id]);
+      // console.log(id);
+      // console.log(this.sub_data[id]);
       this.pathName += " > Sister Concern";
       this.$router.replace(
-        "/adm/settings&management/sbu/sbu-sister-concern:" + id
+        "/adm/sbu/sbu-sister-concern:" + id
       );
     },
     onPrintClick() {
@@ -246,7 +247,7 @@ export default {
       customJs.test(this.sub_data)
     },
     onExcelClick() {
-      console.log("excel");
+      // console.log("excel");
       /*const doc = new jsPDF();
       // const contentHtml = this.$refs.content.innerHTML;
       const contentHtml = document.getElementById('cont');
@@ -255,7 +256,7 @@ export default {
       });
       doc.save("sample.pdf");*/
       // var source =  this.$refs["cont"];
-      console.log(this.sub_data)
+      // console.log(this.sub_data)
             let rows = [];
             let columnHeader = ['NAME', 'ID NUMBER', 'SISTER CONCERN', 'ACTIVE USER', 'STATUS'];
             let pdfName = 'Schedule';

@@ -198,3 +198,144 @@
     margin: 10px auto;
     padding: 10px 0;
 }
+
+/* Delivery Scheduling */
+.mx-datepicker-main.mx-datepicker-popup {
+    background: #FBFCFE;
+    top: calc(74px + 73px + 60px + 30px) !important;
+    box-shadow: 0px 0px 22px -6px #026cd1;
+    padding: 10px;
+    border-radius: 4px;
+}
+.mx-calendar.mx-calendar-panel-date {
+    display: inline-block;
+    border: 2px solid #5b9fec;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+.mx-calendar.mx-calendar-panel-date:nth-child(1) {
+    margin-right: 20px;
+}
+
+#delivery-scheduling-left-list .mx-input-wrapper,
+#delivery-packing-preparation-left-list .mx-input-wrapper,
+#invoice-challan-printing-left-list .mx-input-wrapper  {
+    display: block;
+    position: relative;
+}
+
+#delivery-scheduling-left-list .mx-input-wrapper input,
+#delivery-packing-preparation-left-list .mx-input-wrapper input,
+#invoice-challan-printing-left-list .mx-input-wrapper input {
+    font-size: 12px;
+    width: 176px;
+    /* border   : 1px solid #9e9e9e; */
+    border      : 1px solid #E1E2E3;
+    height   : auto;
+    padding  : 6px 0 6px 2px;
+
+}
+
+#delivery-scheduling-left-list .mx-input-wrapper input:focus,
+#delivery-packing-preparation-left-list .mx-input-wrapper input:focus,
+#invoice-challan-printing-left-list .mx-input-wrapper input:focus {
+    outline           : 0;
+    outline-offset    : 0;
+    -moz-box-shadow   : none;
+    -webkit-box-shadow: none;
+    box-shadow        : none;
+}
+
+#delivery-scheduling-left-list .mx-input-wrapper i,
+#delivery-packing-preparation-left-list .mx-input-wrapper i,
+#invoice-challan-printing-left-list .mx-input-wrapper i {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+#delivery-scheduling-left-list .mx-input-wrapper i:last-child,
+#delivery-packing-preparation-left-list .mx-input-wrapper i:last-child,
+#invoice-challan-printing-left-list .mx-input-wrapper i:last-child {
+    position: absolute;
+    top: 2px;
+    right: 18px;
+}
+
+.mx-datepicker-main.mx-datepicker-popup .mx-date-row td {
+    color: #000000;
+}
+
+.mx-datepicker-main.mx-datepicker-popup .mx-date-row td.not-current-month {
+    color: #949494;
+}
+
+.mx-datepicker-main.mx-datepicker-popup .mx-date-row td:hover {
+    background: #E2EDFA;
+}
+
+.mx-datepicker-main.mx-datepicker-popup .mx-date-row td.active {
+    background: #026CD1;
+}
+
+.mx-datepicker-main.mx-datepicker-popup .mx-date-row td.in-range {
+    background: #E2EDFA;
+    color: #4377a7;
+}
+
+.mx-datepicker-main.mx-datepicker-popup .mx-date-row td div {
+    cursor: pointer;
+    overflow: hidden;
+    line-height: 1;
+    display: block;
+}
+
+/* Delivery Packing Preparation & Invoice Challan Printing */
+#delivery-packing-preparation .v-sheet.v-card,
+#invoice-challan-printing .v-sheet.v-card {
+    box-shadow: none;
+}
+#delivery-packing-preparation .v-tabs-slider-wrapper,
+#invoice-challan-printing .v-tabs-slider-wrapper {
+    display: none
+}
+#delivery-packing-preparation .v-tabs-bar,
+#invoice-challan-printing .v-tabs-bar {
+    height: auto;
+}
+#delivery-packing-preparation .v-tab.v-tab:hover,
+#invoice-challan-printing .v-tab.v-tab:hover {
+    background: none;
+}
+#delivery-packing-preparation .v-tab:before,
+#invoice-challan-printing .v-tab:before {
+    background-color: unset;
+}
+
+/* Dispatch Entry */
+#delivery-process-dispatch-entry .tabs.mt-3.dispatch-entry-tabs {
+    /* display : block;
+    overflow: hidden;
+    height  : auto; */
+}
+#delivery-process-dispatch-entry .tabs.mt-3 ul {
+    border-bottom: 2px solid #E2EDFA;
+}
+#delivery-process-dispatch-entry .tabs.mt-3 ul li {
+    /* margin-bottom: 0; */
+}
+#delivery-process-dispatch-entry .tabs.mt-3 ul li a {
+    border: none;
+    padding: 8px 20px;
+    color: #000000;
+    font-size: 18px;
+    /* font-weight: 500; */
+}
+#delivery-process-dispatch-entry .tabs.mt-3 ul li a.active {
+    border-bottom: 2px solid #026CD1;
+    color: #026CD1;
+}
+#delivery-process-dispatch-entry .tab-content {
+    padding: 20px;
+    margin-top: 20px;
+}

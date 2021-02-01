@@ -21,6 +21,9 @@ import './assets/icofont/icofont.css'
 import './assets/icofont/icofont.min.css'
 import VueHtmlToPaper from 'vue-html-to-paper'
 import 'print-js'
+import * as VueGoogleMaps from "vue2-google-maps";
+// import VueGoogleMap from 'vuejs-google-maps'
+import VueGeolocation from 'vue-browser-geolocation'
 // const options = {
 //   name: '_blank',
 //   specs: [
@@ -39,6 +42,19 @@ import 'print-js'
 Vue.use(VueHtmlToPaper);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyDl9xch1enBwqVj7OQwuLU6q1AoPkqviyI",
+    libraries: "places" // necessary for places input
+  }
+});
+Vue.use(VueGeolocation)
+// Vue.use(VueGoogleMap, {
+//   load: {
+//     apiKey: 'AIzaSyDl9xch1enBwqVj7OQwuLU6q1AoPkqviyI',
+//     // libraries: ['...']
+//   }
+// })
 Vue.config.silent = true
 // var $ = global.$;
 window.$ = $;

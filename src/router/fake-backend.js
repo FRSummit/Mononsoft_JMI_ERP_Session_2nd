@@ -6,22 +6,25 @@ let users = [];
 export function configureFakeBackend() {
     let realFetch = window.fetch;
     window.fetch = async function (url, opts) {
-        console.log("configureFakeBackend : " + url + '    ' + JSON.parse(opts.body).username + '    ' + JSON.parse(opts.body).password)
+        // console.log("configureFakeBackend : " + url + '    ' + JSON.parse(opts.body).username + '    ' + JSON.parse(opts.body).password)
 
-        await erpService.getLoginRequestUserData(JSON.parse(opts.body).username, JSON.parse(opts.body).password)
+        // await erpService.getLoginRequestUserData(JSON.parse(opts.body).username, JSON.parse(opts.body).password)
+        await erpService.login(JSON.parse(opts.body).username, JSON.parse(opts.body).password)
             .then(res => {
+                // console.log(res.data)
                 users = res.data;
             });
         return new Promise((resolve, reject) => {
-            console.log('resolve or reject')
+            // console.log('resolve or reject')
             // wrap in timeout to simulate server api call
             setTimeout(() => {
-                console.log('set timeout')
+                // console.log('set timeout')
 
                 // authenticate
                 if (url.endsWith('/users') && opts.method === 'POST') {
-                    console.log('i am inside authenticate')
-                    // get parameters from post request
+                    // console.log('i am inside authenticate')
+                    // console.log(users)
+                    /*// get parameters from post request
                     let params = JSON.parse(opts.body);
 
                     // find if any user matches login credentials
@@ -29,6 +32,7 @@ export function configureFakeBackend() {
                         console.log('filtered user')
                         return user.username === params.username && user.password === params.password;
                     });
+                    console.log(filteredUsers)
 
                     if (filteredUsers.length) {
                         console.log('resolving')
@@ -43,6 +47,38 @@ export function configureFakeBackend() {
                             idToken: user.id + '_' + user.username,
                             expiresAt: new Date().getTime() + (4 * 60 * 60 * 1000)
                         };
+                        resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(responseJson)) });
+                    } else {
+                        // else return error
+                        reject('Username or password is incorrect');
+                        document.getElementById('error-message').innerHTML = '*incorrect username or password'
+                        document.getElementById('error-message').className = ''
+                    }*/
+                    if (users) {
+                        // console.log('resolving')
+                        // if login details are valid return user details and fake jwt token
+                        // let user = filteredUsers[0];
+                        let responseJson = {
+                            code:users.code,
+                            status: users.status,
+                            message: users.message,
+                            accessToken: users.data.token.access_token,
+                            token_type: users.data.token.token_type,
+                            // expires_at: users.data.expires_at,
+                            expires_at: new Date().getTime() + (Math.abs(new Date(users.data.token.expires_at).getTime() - new Date().getTime())),
+                            user_detils: {
+                                id: users.data.user.id,
+                                name: users.data.user.name,
+                                username: users.data.user.username,
+                                email: users.data.user.email,
+                                user_type: users.data.user.user_type,
+                                sbu_id: users.data.user.sbu_id,
+                                sbu_name: users.data.user.sbu_name,
+                                role_id: users.data.user.role_id,
+                                role_name: users.data.user.role_name
+                            }
+                        };
+                        // console.log(responseJson)
                         resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(responseJson)) });
                     } else {
                         // else return error
@@ -110,7 +146,7 @@ export function configureFakeBackend() {
                         username: newUser.username,
                         password: newUser.password
                     }
-                    console.log(myuser)
+                    // console.log(myuser)
                     erpService.writeUser(myuser);
 
                     // respond 200 OK

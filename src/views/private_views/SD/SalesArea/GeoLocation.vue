@@ -3,7 +3,7 @@
     <Heading :pathName="pathName" :routeName="routeName" />
     <div class="geo-location-section">
       <div class="geo-location-inner">
-        <div class="area-tree-name-section">
+        <!-- <div class="area-tree-name-section">
           <div class="search-section">
             <div class="form-group has-search">
               <span class="fa fa-search form-control-feedback"></span>
@@ -18,7 +18,6 @@
           <div class="area-tree-inner">
             <div class="geo-list-text">
               <div class="icon-arrow" @click="geoListClick">
-                <!-- <i class="fas fa-chevron-right"></i> -->
                 <i class="fas fa-chevron-down"></i>
               </div>
               <p class="list-text" @click="geoListClick">Geo Location List</p>
@@ -77,7 +76,11 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
+        <SecondarySidebar
+          :defaultInfo="defaultInfo"
+          :secondarySidebarData="secondarySidebarData"
+        />
         <div class="area-detail-section">
           <div class="area-detail-inner">
             <div class="area-title-section">
@@ -128,21 +131,25 @@
 </template>
 
 <script>
-import Heading from "../../../../components/private_view_components/ADM/SBU/Heading-section";
+import Heading from "../../../../components/master_layout/HeadingTitleBreadcrumb/HeadingTitleBreadcrumb";
 import ERPSidebarService from "../../../../service/ERPSidebarService";
 const service = new ERPSidebarService();
+import SecondarySidebar from "../../../../components/master_layout/SecondarySidebar/SecondarySidebar";
 
 export default {
   components: {
     Heading,
+    SecondarySidebar,
   },
   data() {
     return {
-      routeName: "Sales Center",
+      routeName: "Geo Location",
       parentPath: "Settings & Management",
       currentRoute: this.$route.name,
       pathName: null,
       geoLoctionList: [],
+      defaultInfo: { sidebar_name: "Geo Location List", name: "Test" },
+      secondarySidebarData: [],
     };
   },
   created() {
@@ -150,6 +157,7 @@ export default {
     this.createBreadcrumbData();
     service.getSDGeoLocation().then((res) => {
       this.geoLoctionList = res.data;
+      this.secondarySidebarData = res.data;
     });
   },
   methods: {
@@ -167,96 +175,191 @@ export default {
     },
     divisionArrowClick(i) {
       // this.closeAllDistrict(i)
-      let districtAreaSection = document.querySelector("#division-area-" + i + " .district-area-section")
-      let divisionDownArrow = document.querySelector("#division-area-" + i + " #division-down-arrow-" + i)
-      let divisionRightArrow = document.querySelector("#division-area-" + i + " #division-right-arrow-" + i)
-      let divisionName = document.querySelector("#division-area-" + i + " .division-name")
-      if(districtAreaSection.className === "district-area-section") {
-        districtAreaSection.className = "district-area-section hide"
-        divisionName.className = 'division-name'
-        divisionDownArrow.className = 'hide'
-        divisionRightArrow.className = ''
+      let districtAreaSection = document.querySelector(
+        "#division-area-" + i + " .district-area-section"
+      );
+      let divisionDownArrow = document.querySelector(
+        "#division-area-" + i + " #division-down-arrow-" + i
+      );
+      let divisionRightArrow = document.querySelector(
+        "#division-area-" + i + " #division-right-arrow-" + i
+      );
+      let divisionName = document.querySelector(
+        "#division-area-" + i + " .division-name"
+      );
+      if (districtAreaSection.className === "district-area-section") {
+        districtAreaSection.className = "district-area-section hide";
+        divisionName.className = "division-name";
+        divisionDownArrow.className = "hide";
+        divisionRightArrow.className = "";
       } else {
-        districtAreaSection.className = "district-area-section"
-        divisionName.className = 'division-name jemy-active'
-        divisionDownArrow.className = ''
-        divisionRightArrow.className = 'hide'
+        districtAreaSection.className = "district-area-section";
+        divisionName.className = "division-name jemy-active";
+        divisionDownArrow.className = "";
+        divisionRightArrow.className = "hide";
       }
     },
     divisionClick(i) {
-      console.log('Division Data : ' + i)
+      console.log("Division Data : " + i);
     },
     districtArrowClick(i, j) {
-      let thanaAreaSection = document.querySelector("#division-area-" + i + " #district-area-" + i + "-" + j + " .thana-area-section")
-      let divisionDownArrow = document.querySelector("#division-area-" + i + " #district-area-" + i + "-" + j + " #district-down-arrow-" + i + "-" + j)
-      let divisionRightArrow = document.querySelector("#division-area-" + i + " #district-area-" + i + "-" + j + " #district-right-arrow-" + i + "-" + j)
-      let districtName = document.querySelector("#division-area-" + i + " #district-area-" + i + "-" + j + " .district-name")
-      if(document.querySelector('#district-area-section-' + i + ' #thana-area-section-' + i + '-' + j).className === "thana-area-section") {
-        document.querySelector('#district-area-section-' + i + ' #thana-area-section-' + i + '-' + j).className = "thana-area-section hide"
-        districtName.className = 'district-name'
+      let thanaAreaSection = document.querySelector(
+        "#division-area-" +
+          i +
+          " #district-area-" +
+          i +
+          "-" +
+          j +
+          " .thana-area-section"
+      );
+      let divisionDownArrow = document.querySelector(
+        "#division-area-" +
+          i +
+          " #district-area-" +
+          i +
+          "-" +
+          j +
+          " #district-down-arrow-" +
+          i +
+          "-" +
+          j
+      );
+      let divisionRightArrow = document.querySelector(
+        "#division-area-" +
+          i +
+          " #district-area-" +
+          i +
+          "-" +
+          j +
+          " #district-right-arrow-" +
+          i +
+          "-" +
+          j
+      );
+      let districtName = document.querySelector(
+        "#division-area-" +
+          i +
+          " #district-area-" +
+          i +
+          "-" +
+          j +
+          " .district-name"
+      );
+      if (
+        document.querySelector(
+          "#district-area-section-" + i + " #thana-area-section-" + i + "-" + j
+        ).className === "thana-area-section"
+      ) {
+        document.querySelector(
+          "#district-area-section-" + i + " #thana-area-section-" + i + "-" + j
+        ).className = "thana-area-section hide";
+        districtName.className = "district-name";
         // this.closeThanaArrow()
       } else {
         // this.closeAllThana()
-        if(thanaAreaSection.className === "thana-area-section") {
-          thanaAreaSection.className = "thana-area-section hide"
-          districtName.className = 'district-name'
-          divisionDownArrow.className = 'hide'
-          divisionRightArrow.className = ''
+        if (thanaAreaSection.className === "thana-area-section") {
+          thanaAreaSection.className = "thana-area-section hide";
+          districtName.className = "district-name";
+          divisionDownArrow.className = "hide";
+          divisionRightArrow.className = "";
         } else {
-          thanaAreaSection.className = "thana-area-section"
-          districtName.className = 'district-name jemy-active'
-          divisionDownArrow.className = ''
-          divisionRightArrow.className = 'hide'
+          thanaAreaSection.className = "thana-area-section";
+          districtName.className = "district-name jemy-active";
+          divisionDownArrow.className = "";
+          divisionRightArrow.className = "hide";
         }
       }
     },
     districtClick(i, j) {
-      console.log('Division Data : ' + i + '    ' + j)
+      console.log("Division Data : " + i + "    " + j);
     },
     thanaClick(i, j, k) {
       console.log("Thana Click : " + i + "    " + j + "    " + k);
-      this.removeThanaActiveClass()
-      let thanaIcon = document.querySelector("#division-area-" + i + " #district-area-" + i + "-" + j + " #thana-area-" + i + "-" + j + "-" + k + " .square-icon")
-      let thanaName = document.querySelector("#division-area-" + i + " #district-area-" + i + "-" + j + " #thana-area-" + i + "-" + j + "-" + k + " .thana-name")
-      thanaIcon.className = "square-icon jemy-active-square"
-      thanaName.className = "thana-name jemy-active"
+      this.removeThanaActiveClass();
+      let thanaIcon = document.querySelector(
+        "#division-area-" +
+          i +
+          " #district-area-" +
+          i +
+          "-" +
+          j +
+          " #thana-area-" +
+          i +
+          "-" +
+          j +
+          "-" +
+          k +
+          " .square-icon"
+      );
+      let thanaName = document.querySelector(
+        "#division-area-" +
+          i +
+          " #district-area-" +
+          i +
+          "-" +
+          j +
+          " #thana-area-" +
+          i +
+          "-" +
+          j +
+          "-" +
+          k +
+          " .thana-name"
+      );
+      thanaIcon.className = "square-icon jemy-active-square";
+      thanaName.className = "thana-name jemy-active";
     },
     closeAllDistrict(id) {
       // this.closeAllThana()
-      let districtSection = document.querySelectorAll('.district-area-section')
-      let divisionName = document.querySelectorAll(".division-name")
-      for(let i=0; i<districtSection.length; i++) {
-        divisionName[i].className = 'division-name'
-        if(i !== id) {
-          districtSection[i].className = "district-area-section hide"
-          document.querySelector("#division-area-" + i + " #division-down-arrow-" + i).className = 'hide'
-          document.querySelector("#division-area-" + i + " #division-right-arrow-" + i).className = ''
+      let districtSection = document.querySelectorAll(".district-area-section");
+      let divisionName = document.querySelectorAll(".division-name");
+      for (let i = 0; i < districtSection.length; i++) {
+        divisionName[i].className = "division-name";
+        if (i !== id) {
+          districtSection[i].className = "district-area-section hide";
+          document.querySelector(
+            "#division-area-" + i + " #division-down-arrow-" + i
+          ).className = "hide";
+          document.querySelector(
+            "#division-area-" + i + " #division-right-arrow-" + i
+          ).className = "";
         }
       }
     },
     closeAllThana() {
-      let districtName = document.querySelectorAll(".district-name")
-      for(let i=0; i<document.querySelectorAll('.thana-area-section').length; i++) {
-        districtName[i].className = 'district-name'
-        document.querySelectorAll('.thana-area-section')[i].className = "thana-area-section hide"
+      let districtName = document.querySelectorAll(".district-name");
+      for (
+        let i = 0;
+        i < document.querySelectorAll(".thana-area-section").length;
+        i++
+      ) {
+        districtName[i].className = "district-name";
+        document.querySelectorAll(".thana-area-section")[i].className =
+          "thana-area-section hide";
       }
-      this.closeThanaArrow()
-      this.removeThanaActiveClass()
+      this.closeThanaArrow();
+      this.removeThanaActiveClass();
     },
     closeThanaArrow() {
-      let districtArrowIcon = document.querySelectorAll('.district-area-section .icon-arrow')
-      for(let i=0; i<districtArrowIcon.length; i++) {
-        document.querySelectorAll('.district-area-section .icon-arrow span:nth-child(1)')[i].className = ''
-        document.querySelectorAll('.district-area-section .icon-arrow span:nth-child(2)')[i].className = 'hide'
+      let districtArrowIcon = document.querySelectorAll(
+        ".district-area-section .icon-arrow"
+      );
+      for (let i = 0; i < districtArrowIcon.length; i++) {
+        document.querySelectorAll(
+          ".district-area-section .icon-arrow span:nth-child(1)"
+        )[i].className = "";
+        document.querySelectorAll(
+          ".district-area-section .icon-arrow span:nth-child(2)"
+        )[i].className = "hide";
       }
     },
     removeThanaActiveClass() {
-      let thanaList = document.querySelectorAll('.thana-name')
-      for(let i=0; i<thanaList.length; i++) {
-        document.querySelectorAll('.square-icon')[i].className = 'square-icon'
-        thanaList[i].className = 'thana-name'
+      let thanaList = document.querySelectorAll(".thana-name");
+      for (let i = 0; i < thanaList.length; i++) {
+        document.querySelectorAll(".square-icon")[i].className = "square-icon";
+        thanaList[i].className = "thana-name";
       }
-    }
+    },
   },
 };
 </script>

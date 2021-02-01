@@ -183,8 +183,8 @@ export default {
         this.passengers = response.data[0].data;
         this.totalPassengers = response.data[0].totalPassengers;
         this.numberOfPages = response.data[0].totalPages;
-        console.log(response.data);
-        console.log(response.data[0]);
+        // console.log(response.data);
+        // console.log(response.data[0]);
       });
     },
   },

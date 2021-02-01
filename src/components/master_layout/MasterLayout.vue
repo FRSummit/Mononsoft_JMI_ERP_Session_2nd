@@ -2,70 +2,62 @@
   <div id="master-layout" class="master-layout">
     <!-- header section -->
     <div id="header" class="header" v-if="privatePage">
-      <div class="left-section">
-        <div class="hamburger-menu-section">
-          <span class="hamburger" @click="toggleNav()">&#9776;</span>
-        </div>
-        <div class="logo-section">
-          <img
-            class="group-logo"
-            src="../../assets/images/Nipro JMI pharma-01.png"
-            alt=""
-            style="max-height: 40px"
-          />
-        </div>
-        <div class="group-name-section">
-          <p class="group-name">Nipro JMI Pharma</p>
-        </div>
-        <div class="group-selection-dropdown-section">
-          <img
-            class="group-selection-icon"
-            src="../../assets/icons/role.png"
-            alt="pharma-logo"
-            @click="selectGroup()"
-          />
-          <GroupModal />
-        </div>
-      </div>
-      <div class="right-section">
-        <div class="chat-section" @click="chatIconClick()">
-          <img
-            class="chat-icon-chat"
-            src="../../assets/icons/chat.svg"
-            alt="chat-icon"
-          />
-          <span class="chat-circle"></span>
-          <ChatModal />
-        </div>
-        <div class="notification-section" @click="bellIconClick()">
-          <img
-            class="bell-icon-chat"
-            src="../../assets/icons/bell.svg"
-            alt="bell-icon"
-          />
-          <span class="bell-circle"></span>
-          <NotificationModal />
-        </div>
-        <div class="profile-section" @click="profileClick()">
-          <div class="profile-img-section">
+      <div class="header-inner">
+        <div class="left-section">
+          <div class="hamburger-menu-section">
+            <span class="hamburger" @click="toggleNav()">&#9776;</span>
+          </div>
+          <div class="logo-section">
             <img
-              class="user-icon"
-              src="../../assets/icons/user.png"
-              alt="user"
+              class="group-logo"
+              src="../../assets/images/groups/nipro_jmi-pharma.png"
+              alt=""
             />
           </div>
-          <div class="profile-desc-section">
-            <div>
-              <p class="profile-name">Fahim Bin Najib</p>
+          <div class="group-name-section">
+            <p class="group-name">Nipro JMI Pharma</p>
+          </div>
+          <div class="group-selection-dropdown-section">
+            <span class="group-selection-icon" @click="selectGroup()">
+              <i class="fas fa-exchange-alt"></i>
+            </span>
+            <GroupModal />
+          </div>
+        </div>
+        <div class="right-section">
+          <div class="chat-section" @click="chatIconClick()">
+            <span class="chat-icon-chat">
+              <i class="far fa-comment-alt"></i>
+            </span>
+            <span class="chat-circle"></span>
+            <ChatModal />
+          </div>
+          <div class="notification-section" @click="bellIconClick()">
+            <span class="bell-icon-bell">
+              <i class="far fa-bell"></i>
+            </span>
+            <span class="bell-circle"></span>
+            <NotificationModal />
+          </div>
+          <div class="profile-section" @click="profileClick()">
+            <div class="profile-img-section">
               <img
-                class="profile-arrow"
-                src="../../assets/icons/down-arrow.png"
-                alt=""
+                class="user-icon"
+                src="../../assets/icons/user.png"
+                alt="user"
               />
             </div>
-            <p class="profile-designation">Software Solution Architect</p>
+            <div class="profile-desc-section">
+              <div>
+                <p class="profile-name">{{ userName }}</p>
+                <span class="profile-arrow">
+                  <i class="fas fa-chevron-down"></i>
+                </span>
+              </div>
+              <p class="profile-designation">{{ userDesignation }}</p>
+            </div>
+            <ProfileModal />
           </div>
-          <ProfileModal />
         </div>
       </div>
     </div>
@@ -86,11 +78,13 @@
 
     <!-- Footer Section -->
     <div id="footer" class="footer" v-if="privatePage">
-      <div class="footer-inner">
-        <p>New Life Hospital Opening Ceremony Going On</p>
-        <p>New Life Hospital Opening Ceremony Going On</p>
-        <p>New Life Hospital Opening Ceremony Going On</p>
-      </div>
+      <marquee>
+        <div class="footer-inner">
+          <p>New Life Hospital Opening Ceremony Going On</p>
+          <p>New Life Hospital Opening Ceremony Going On</p>
+          <p>New Life Hospital Opening Ceremony Going On</p>
+        </div>
+      </marquee>
     </div>
   </div>
 </template>
@@ -116,6 +110,8 @@ export default {
   },
   data() {
     return {
+      userName: JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")).user_detils.name : "Fayazur Rahman Summit",
+      userDesignation: JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")).user_detils.role_name : "Sr. Software Engineer",
       sidenav: false,
       authenticated: this.$store.state.userIsAuthorized,
       privatePage: false,
@@ -123,7 +119,7 @@ export default {
   },
   created() {},
   mounted() {
-    console.log(this.$route.name);
+    // console.log(this.$route.name);
   },
   methods: {
     toggleNav() {
@@ -180,7 +176,7 @@ export default {
     },
     profileArrowRotation() {
       if (
-        document.querySelector(".profile-arrow").className === "profile-arrow"
+        document.getElementById("profile-modal").className === "profile-modal"
       ) {
         document.querySelector(".profile-arrow").className =
           "profile-arrow profile-arrow-rotation";
@@ -197,7 +193,8 @@ export default {
       if (!this.sidenav) {
         document.getElementById("sidenavbar").style.width = "350px";
         document.querySelector(".menu-section-inner").style.left = "0px";
-        document.querySelector(".menu-section-colps-icon").style.right = "-60px";
+        document.querySelector(".menu-section-colps-icon").style.right =
+          "-60px";
       }
     },
     sidebarHoverLeave() {

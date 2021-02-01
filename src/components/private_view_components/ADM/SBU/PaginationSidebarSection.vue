@@ -102,7 +102,7 @@ export default {
     };
   },
   created() {
-    console.log("Route name : " + this.routeName);
+    // console.log("Route name : " + this.routeName);
     // console.log(bcrypt);
     let password = "secret";
     let passwordHash;
@@ -113,7 +113,7 @@ export default {
       });
     });
     console.log(passwordHash);
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>");
+    // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>");
     let salt_ = bcrypt.genSaltSync(10);
     let hash_ = bcrypt.hashSync(password, salt_);
     console.log(hash_);
@@ -123,10 +123,10 @@ export default {
     addnewClick() {
       switch(this.routeName) {
         case 'Strategic Business Unit':
-          this.$router.replace("/adm/settings&management/sbu/create-new-sbu");
+          this.$router.replace("/adm/sbu/create-new-sbu");
           break
         case 'Sales Center':
-          this.$router.replace("/sd/settings&management/sales-center/create-new-geo-location");
+          this.$router.replace("/sd/sales-center/create-new-geo-location");
           break
         default:
           break

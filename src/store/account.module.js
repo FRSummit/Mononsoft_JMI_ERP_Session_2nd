@@ -4,22 +4,22 @@ import { router } from '../router'
 
 
 const user = JSON.parse(localStorage.getItem('user'));
-console.log('account.modulle => local storage user :  ' + user)
+// console.log('account.modulle => local storage user :  ' + user)
 const state = user ? { status: { loggedIn: true }, user } : { status: {}, user: null };
-console.log('account.module => state : ' + state + '    loggingIn: ' + state.loggingIn + '    user : ' + state.user)
+// console.log('account.module => state : ' + state + '    loggingIn: ' + state.loggingIn + '    user : ' + state.user)
 
 const actions = {
     login({ dispatch, commit }, loginData) {
         commit('loginRequest');
-        console.log('I am here in account.modulle : ' + loginData.username + '    ' + loginData.password)
+        // console.log('I am here in account.modulle : ' + loginData.username + '    ' + loginData.password)
         // console.log(loginData)
         // console.log(env)
         userService.login(loginData.username, loginData.password)
             .then(
                 user => {
                     commit('loginSuccess', user);
-                    router.push('/landing-page');
-                    // window.location.href = env.baseURL + '/landing-page'
+                    router.push('/dashboard');
+                    // window.location.href = env.baseURL + '/dashboard'
                 },
                 error => {
                     commit('loginFailure', error);
@@ -35,17 +35,17 @@ const actions = {
 
 const mutations = {
     loginRequest(state, user) {
-        console.log('login request')
+        // console.log('login request')
         state.status = { loggingIn: true };
         state.user = user;
     },
     loginSuccess(state, user) {
-        console.log('login success')
+        // console.log('login success')
         state.status = { loggedIn: true };
         state.user = user;
     },
     loginFailure(state) {
-        console.log('login failure')
+        // console.log('login failure')
         state.status = {};
         state.user = null;
     },

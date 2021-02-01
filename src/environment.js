@@ -11,7 +11,9 @@ export default {
   // apiBaseUrl: "http://192.168.10.34:3001"
   baseURL: "http://localhost:8081",
   // baseURL: "http://203.188.246.138:8887",
-  apiBaseUrl: "http://frs-json-server.herokuapp.com",
+  apiBaseUrl: "http://203.188.246.138:8885",
+  // apiBaseUrl: "http://192.168.10.76:8000",
+  apiBaseUrlFRS: "http://frs-json-server.herokuapp.com",
   printOption: {
     name: "_blank",
     specs: ["fullscreen=yes", "titlebar=yes", "scrollbars=yes"],

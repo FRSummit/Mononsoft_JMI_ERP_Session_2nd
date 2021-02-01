@@ -2,7 +2,7 @@
 const $ = require('jquery');
 
 $(document).ready(function () {
-    console.log('I am custom js')
+    // console.log('I am custom js')
 });
 
 // function test(pera) {
